@@ -2,12 +2,16 @@
 
 using namespace std;
 
-// This can work by finding the common prime factors, and then dividing by those common prime factors?
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int N, K, h;
-
     
+    int N;
+    int p,s,c,d;
+    
+    while (N--) {
+        cin >> p >> s >> c >> d;
+    }
+
     return 0;
 }
