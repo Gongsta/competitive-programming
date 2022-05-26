@@ -8,7 +8,7 @@ int main() {
     while (T--) {
         cin >> a >> b >> c >> d;
         
-        if (((float)b / (float)a) > 1.0 && ((float)d / (float)c) > 1.0 && abs((float) b / (float) a - (float) d / (float)c) > 1e-6) {
+        if (((((float) b / (float)a - 2.0) + ((float) b / (float) a - 1.0) * ((float)d / (float)c - 2.0)) > 0.0) && ((((float) d / (float)c - 2.0) + ((float) d / (float) c - 1.0) * ((float)b / (float)a - 2.0)) > 0.0)) {
             cout << "YES\n";
         } else {
             cout << "NO\n";
