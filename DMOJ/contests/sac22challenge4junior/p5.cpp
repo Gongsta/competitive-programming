@@ -3,8 +3,11 @@
 using namespace std;
 
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+    int N, M;
+    
+    for (int i=1; i<=100; i++) {
+        
+    }
 
     return 0;
 }
