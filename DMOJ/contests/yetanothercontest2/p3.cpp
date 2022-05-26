@@ -2,16 +2,12 @@
 
 using namespace std;
 
-
-
-// Intuition: Find the largest possible common denominator of all numbers. Generate subsets using recursion
-int arr[300006]
-
+// This can work by finding the common prime factors, and then dividing by those common prime factors?
 int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
     int N, K, h;
-    cin >> N >> K:
-    for (int i=1;i<=N; i++) {
-        cin >> h;
-    }
+
+    
     return 0;
 }
