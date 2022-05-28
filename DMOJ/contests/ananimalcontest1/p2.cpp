@@ -2,11 +2,11 @@
 
 using namespace std;
 
-float arr[100001];
+long int arr[1000001];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    int N, D, K, X, P;
+    long int N, D, K, X, P;
     cin >> N >> D >> K >> X;
 
     for (int i=1;i <=N; i++) {
@@ -28,7 +28,8 @@ int main() {
         if (win && K >= 0) {
             cout << "YES";
             return 0;
-        }
+        } 
+        
     }
     
     cout << "NO";
