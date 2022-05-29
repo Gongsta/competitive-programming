@@ -2,10 +2,10 @@
 
 using namespace std;
 
-int arr[20001] = {0};
-int total_count[20001];
-char last[20001];
-char first[20001];
+int arr[200001] = {0};
+int total_count[200001];
+char last[200001];
+char first[200001];
 
 
 int count_duplicates(string word) {

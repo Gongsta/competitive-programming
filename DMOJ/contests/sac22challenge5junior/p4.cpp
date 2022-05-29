@@ -2,8 +2,8 @@
 
 using namespace std;
 
-vector<int> adj[20001];
-bool visited[20001];
+vector<int> adj[200001];
+bool visited[200001];
 queue<int> q;
 
 void dfs(int n) {
@@ -28,7 +28,6 @@ int main() {
             cin >> b;
             adj[i].push_back(b);
         }
-        dfs(i);
     }
     
     for (int i=1; i<=N; i++) {
