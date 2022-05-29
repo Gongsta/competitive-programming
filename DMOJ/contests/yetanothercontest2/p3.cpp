@@ -29,16 +29,20 @@ int main() {
            count_temp += 1;
            temp = temp/2;
            distinct[2].insert(h);
+
+            if (!count_n.count(2)) {
+                count_n[2] = INF;
+            }
+            count_n[2] = min(count_n[2], count_temp);
        }
-       if (!count_n.at(2)) {
-           count_n[2] = INF;
-       }
-       count_n[2] = min(count_n[2], count_temp);
        // Get Prime factors
-       for (int i=3; i<=sqrt(h); i+=2) {
+       for (int i=3; i<=sqrt(temp); i+=2) {
             bool success = false;
             count_temp = 0;
-            while (h % i == 0) {
+            if (temp == 1) {
+                break;
+            }
+            while (temp % i == 0) {
                 success = true;
                 count_temp += 1;
                 temp = temp / i;
@@ -46,16 +50,21 @@ int main() {
 
            }
            if (success) {
-            if (!count_n.at(i)) {
+            if (!count_n.count(i)) {
                 count_n[i] = INF;
             }
             count_n[i] = min(count_n[i], count_temp);
            }
        }
-   }
-   
+       if (temp > 2) {
+            count_n[temp] = 1;
+            distinct[temp].insert(h);
+           }
+
+       }
    int total = 0;
    for (auto x: distinct) {
+        // cout << x.first << ":" << x.second.size() << endl;
        if (x.second.size() >= K) {
            total += count_n[x.first];
        }
@@ -63,6 +72,9 @@ int main() {
    
    cout << total << endl;
     
+    // for (auto x: count_n) {
+    //     cout << x.first << ":" << x.second << endl;
+    // }
     
     return 0;
 }
