@@ -10,6 +10,8 @@ int main() {
     2. Remove from the map
     3. Can be done diagonally? Na, it its square yes but not a vertical rectangle. But you can still
     try to move up diagonally
+    
+    ALMOST THERE, the idea. You need to do binary search..
     */
    int n,q,t;
    cin >> n >> q;
