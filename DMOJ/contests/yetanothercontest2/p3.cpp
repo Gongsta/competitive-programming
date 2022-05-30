@@ -4,9 +4,9 @@ using namespace std;
 
 // This can work by finding the common prime factors, and then dividing by those common prime factors?
 map<int, int> count_n;
-map<int, set<int>> distinct;
+map<int, set<int> > distinct;
 
-int INF = numeric_limits<int>::max();
+int INF = 1 << 30;
 
 int main() {
     ios::sync_with_stdio(0);
@@ -20,7 +20,7 @@ int main() {
     2. Remove the common factor of at least K elements until you are no longer able to.
     */
    int temp;
-   while (N--) {
+   for (int idx=1; idx<=N;idx++){
        cin >> h;
        temp = h;
        int count_temp = 0;
@@ -28,7 +28,7 @@ int main() {
        while (temp % 2 == 0) {
            count_temp += 1;
            temp = temp/2;
-           distinct[2].insert(h);
+           distinct[2].insert(idx);
 
             if (!count_n.count(2)) {
                 count_n[2] = INF;
@@ -46,7 +46,7 @@ int main() {
                 success = true;
                 count_temp += 1;
                 temp = temp / i;
-                distinct[i].insert(h);
+                distinct[i].insert(idx);
 
            }
            if (success) {
@@ -57,18 +57,24 @@ int main() {
            }
        }
        if (temp > 2) {
-            count_n[temp] = 1;
-            distinct[temp].insert(h);
+           if (!count_n.count(temp)) {
+                count_n[temp] = 1;
+
+           } else {
+                count_n[temp] += 1;
+
+           }
+            distinct[temp].insert(idx);
            }
 
        }
-   int total = 0;
-   for (auto x: distinct) {
-        // cout << x.first << ":" << x.second.size() << endl;
-       if (x.second.size() >= K) {
-           total += count_n[x.first];
-       }
-   }
+    int total = 0;
+    for (auto x: distinct) {
+            // cout << x.first << ":" << x.second.size() << endl;
+        if (x.second.size() >= K) {
+            total += count_n[x.first];
+        }
+    }
    
    cout << total << endl;
     
