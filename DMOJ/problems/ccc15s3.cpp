@@ -3,6 +3,7 @@
 using namespace std;
 
 set<int, greater<int> > freegates;
+set<int, greater<int> >::iterator it;
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -34,19 +35,15 @@ int main() {
                 count += 1;
             } else {
                 bool found = false;
-                int target;
-                for (int x: freegates) {
-                    if (x <= i) {
-                        target = x;
-                        count += 1;
-                        found = true;
-                        break;
-                    }
+                it = freegates.upper_bound(i);
+                if (it != freegates.end()) {
+                    found = true;
+                    count++;
                 }
                 if (!found) {
                     terminate = true;
                 } else {
-                    freegates.erase(target);
+                    freegates.erase(it);
                 }
             }
         }
