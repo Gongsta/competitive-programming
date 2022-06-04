@@ -4,9 +4,9 @@ using namespace std;
 
 vector<int> adj[30001];
 bitset<30001> visited;
+int dist[30001];
 unordered_set<int> offices;
 
-int INF = 1 << 30;
 // int dfs(int i, int count) {
 //     if (offices.count(i)) return count;
 //     if (visited[i]) return INF;
@@ -19,6 +19,7 @@ int INF = 1 << 30;
 // }
 
 // BFS is better because I will always find the shortest one
+queue<int> q;
 
 int main() {
     ios::sync_with_stdio(0);
@@ -42,9 +43,29 @@ int main() {
         offices.insert(x);
     }
     int max_count = 0;
+    int office_node;
     for (int i=1;i<=N; i++) {
+        while (!q.empty()) {
+            q.pop();
+        }
         visited.reset();
-        max_count = max(max_count, dfs(i, 0));
+        // BFS for each node
+        q.push(i);
+        dist[i] = 0;
+        while (!q.empty()) {
+            int s = q.front(); q.pop();
+            if (offices.count(s)) {
+                office_node = s;
+                break;
+            }
+            for (auto x : adj[s]) {
+                if (visited[x]) continue;
+                visited[x] = 1;
+                dist[x] = dist[s] + 1;
+                q.push(x);
+            }
+        }
+        max_count = max(max_count,dist[office_node]);
     }
     
     cout << max_count << endl;
