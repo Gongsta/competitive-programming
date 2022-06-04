@@ -7,16 +7,19 @@ bitset<30001> visited;
 unordered_set<int> offices;
 
 int INF = 1 << 30;
-int dfs(int i, int count) {
-    if (offices.count(i)) return count;
-    if (visited[i]) return INF;
-    visited[i] = 1;
-    int val = INF;
-    for (int x: adj[i]) {
-        val = min(val, dfs(x, count + 1));
-    }
-    return val;
-}
+// int dfs(int i, int count) {
+//     if (offices.count(i)) return count;
+//     if (visited[i]) return INF;
+//     visited[i] = 1;
+//     int val = INF;
+//     for (int x: adj[i]) {
+//         val = min(val, dfs(x, count + 1));
+//     }
+//     return val;
+// }
+
+// BFS is better because I will always find the shortest one
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
