@@ -8,6 +8,14 @@ int main() {
     
     int N;
     cin >> N;
+    /* Well first notice that this is a tree problem,
+    because there are N vertices and N-1 edges.
+    */
+   int u,v,w;
+   while (N--) {
+       cin >> u >> v >> w;
+   }
+   
     
 
     return 0;

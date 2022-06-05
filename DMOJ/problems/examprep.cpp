@@ -2,56 +2,63 @@
 
 using namespace std;
 
-// I GAVE UP
-
 int link[1000001];
-int vals[1000001];
-int s[100001] = {1};
-int find(int x) {
-    while (x != link[x]) x = link[x];
-    return x;
+int sz[1000001];
+long long int pages_total[1000001];
+
+int find(int a) {
+    vector<int> v;
+    while (link[a] != a) {
+        a = link[a];
+    }
+    return a;
 }
 bool same(int a, int b) {
     return find(a) == find(b);
 }
 
-void unite(int a, int b) {
+void merge(int a, int b) {
     a = find(a);
     b = find(b);
-    if (size[a] > size[b]) swap(a,b);
-    size[b] += size[a];
-    link[a] = b;
+    if (sz[a] > sz[b]) {
+        swap(a,b);
+    }
+    if (a != b) {
+        link[a] = b;
+        sz[b] += sz[a];
+        pages_total[b] += pages_total[a];
+    }
 }
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
+
     int N,Q;
-    cin >> N;
-    int val;
-    for (int i=1; i<=N; i++) {
+    cin >> N >> Q;
+    int a,b;
+    for (int i=1;i<=N;i++){
+        cin >> pages_total[i];
+        sz[i] = 1;
         link[i] = i;
-        cin >> val;
-        vals[i] = val;
     }
-    
-    int q, a,b;
+    int x;
     while (Q--) {
-        cin >> q;
-        if (q == 1) {
+        cin >> x;
+        if (x == 1) {
             cin >> a >> b;
-            if (!same(a,b)) unite(a,b);
-        } else if (q==2) {
+            merge(a,b); // We check if they are not the same in the function
+
+        } else if (x == 2) {
             cin >> a;
-            cout << size[a] - ;
+            a = find(a);
+            cout << sz[a] << endl;
         } else {
             cin >> a;
-
+            a = find(a);
+            cout << pages_total[a] << endl;
         }
 
     }
-    
-    
-
-
     return 0;
 }
