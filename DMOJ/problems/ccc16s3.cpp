@@ -4,38 +4,39 @@ using namespace std;
 
 unordered_set<int> pho;
 vector<int> adj[100001];
+bool visited[100001];
 unordered_set<int> not_included;
-set<int> leaves;
+queue<int> leaves;
 unordered_set<int> diameter_path;
+unordered_set<int> dependent_node;
 int N, M, n,m;
 
-void dfs_leaf_search(int curr, int prev) {
-    if (pho.count(curr) != 0 || not_included.count(curr)) {
-        return;
-    } else {
-        not_included.insert(curr);
-        for (auto x: adj[curr]) {
-            if (x != prev) {
-                dfs_leaf_search(x, curr);
-            }
-        }
-    }
-}
+int final_node;
+deque<int> dq;
 
-int final_node
-int dfs(int curr, int prev) {
+int dfs(int curr, int prev, int length) {
+    // Child node
     if (adj[curr].size() == 1 && prev == adj[curr][0]) {
         return length;
     }
+    int max_len = length;
     for (auto x: adj[curr]) {
         if (x != prev) {
-            dfs(x, curr);
+            dq.push_back(x);
+            int curr_len = dfs(x, curr, length+1);
+           if (curr_len > max_len) {
+               max_len = curr_len;
+               final_node = x;
+           } else {
+               dq.pop_back();
+           }
         }
     }
+    return max_len;
 
 }
 
-void diameter() {
+int diameter() {
     int a,b,c;
     for (int i=0; i<n;i++) {
         if (!not_included.count(i)) {
@@ -43,9 +44,41 @@ void diameter() {
             break;
         }
     }
-    // Dfs on a;
-    b = dfs(a, -1);
-    c = dfs(b, -1);
+    // DFS on a;
+    dfs(a, -1, 0);
+    b = final_node;
+    cout << "B" << b;
+    dq.clear();
+    // DFS on b;
+    int final = dfs(b, -1, 0);
+    c = final_node;
+    
+    cout << "dq path";
+    while (!dq.empty()) {
+        int a = dq.front(); dq.pop_front();
+        diameter_path.insert(a);
+        cout << a;
+    }
+    return final;
+}
+
+//Returns the minimum distance
+int min_dfs(int curr, int prev, int dist) {
+    if (pho.count(curr)) {
+        return dist;
+    }
+    int final_dist = 1 << 30;
+    int curr_dist;
+    for (auto x: adj[curr]) {
+        if (x != curr) {
+            curr_dist = min_dfs(x, curr, dist+1);
+            final_dist = min(curr_dist, final_dist);
+
+        }
+    }
+    return final_dist;
+
+
 }
 
 int main() {
@@ -86,15 +119,39 @@ int main() {
    // performing DFS, store in the not_included set
    for (int i=0;i<n;i++) {
        if (adj[i].size() == 1) {
-           leaves.insert(i);
+           leaves.push(i);
        }
    }
-   
-   for (auto leaf: leaves) {
-       dfs_leaf_search(leaf, -1);
+    while (!leaves.empty()) {
+        int x = leaves.front();leaves.pop();
+        if (!pho.count(x) && (!dependent_node.count(x))) {
+                not_included.insert(x);
+                for (auto i: adj[x]) {
+                    if (visited[i]) continue;
+                    visited[i] = true;
+                    leaves.push(i);
+                }
+        } else {
+            for (auto i: adj[x]) {
+                dependent_node.insert(i);
+                if (visited[i]) continue;
+                visited[i] = true;
+                leaves.push(i);
+            }
+        }
+    }
 
-   }
     
     // 2. Find diameter of the tree, by performing dfs twice
+    int final_diameter = diameter();
+    
+    // 3.
+    int val = 0;
+    for (int i=0;i<n;i++) {
+        if (!not_included.count(i) && !diameter_path.count(i)) {
+            val += min_dfs(i, -1, 0);
+        }
+    }
+    cout << final_diameter + 2 * val << endl;
     return 0;
 }
