@@ -2,6 +2,14 @@
 
 using namespace std;
 
+/* Intuition WRONG (i considered using an array at first)
+1. Store values of plane limits in an array
+2. Sort the array
+3. +1 if arr[i] >= arr, else this plane won't fit.
+*/
+
+// Error in understanding: You have to assign them right away, much easier than I thought...
+
 set<int, greater<int> > freegates;
 set<int, greater<int> >::iterator it;
 int main() {
@@ -10,13 +18,6 @@ int main() {
     int G, P;
     
     cin >> G >> P;
-    /* Intuition
-    1. Store values of plane limits in an array
-    2. Sort the array
-    3. +1 if arr[i] >= arr, else this plane won't fit.
-    */
-   
-   // Error in understanding: You have to assign them right away, much easier than I thought...
     
     int count = 0;
     int i;

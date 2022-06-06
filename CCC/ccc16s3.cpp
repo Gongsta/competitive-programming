@@ -73,11 +73,9 @@ int min_dfs(int curr, int prev, int dist) {
         if (x != curr) {
             curr_dist = min_dfs(x, curr, dist+1);
             final_dist = min(curr_dist, final_dist);
-
         }
     }
     return final_dist;
-
 
 }
 

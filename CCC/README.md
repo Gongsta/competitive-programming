@@ -3,19 +3,19 @@ The skills needed is taken directly from the DMOJ site. The difficulty is based 
 
 Problem | Skills Needed | Difficulty | Status | Date | Solution
 :---:|:---:|:---:|:---: | :---: | :---: 
-[CCC'22 S3](https://dmoj.ca/problem/ccc22s3) | Incomplete |Ad Hoc, Greedy Algorithms | 2.5/5 | 06-05-2022 |
-[CCC'21 S3](https://dmoj.ca/problem/ccc21s3) | Incomplete | | |
+[CCC'22 S3](https://dmoj.ca/problem/ccc22s3) | Ad Hoc, Greedy Algorithms | 2.5/5 | Incomplete | 06-05-2022 | |
+[CCC'21 S3](https://dmoj.ca/problem/ccc21s3) |  | | |
 [CCC'20 S3](https://dmoj.ca/problem/ccc20s3) |  | | |
 [CCC'19 S3](https://dmoj.ca/problem/ccc19s3) |  | | |
 [CCC'18 S3](https://dmoj.ca/problem/ccc18s3) |  | | |
 [CCC'17 S3](https://dmoj.ca/problem/ccc17s3) |  | | |
-[CCC'16 S3](https://dmoj.ca/problem/ccc16s3) |  | ||
-[CCC'15 S3](https://dmoj.ca/problem/ccc15s3) |  | ||
-[CCC'14 S3](https://dmoj.ca/problem/ccc14s3) |   | ||
+[CCC'16 S3](https://dmoj.ca/problem/ccc16s3) | This took me a while to do. Quite difficult. | 3/5 (15 pts) ||
+[CCC'15 S3](https://dmoj.ca/problem/ccc15s3) | Implemented using an ordered set. Use a greedy algorithm to always put the plane at last gate it can, storing the available gates in the set. | 2/5 | Done| 05-31-2022 | [ccc15s3.cpp](ccc15s3.cpp)
+[CCC'14 S3](https://dmoj.ca/problem/ccc14s3) | Reminds me of the Tower of Hanoi problem, and there's this other problem as well! Can't remember because I didn't solve it, will add it back once I figure it out. Solved by using stacks and basically implementing it. | 1.5/5 | Done | 06-05-2022 | [ccc14s3.cpp](ccc14s3.cpp)
 [CCC'13 S3](https://dmoj.ca/problem/ccc13s3) |  | ||
-[CCC'12 S3](https://dmoj.ca/problem/ccc12s3) |  | ||
-[CCC'11 S3](https://dmoj.ca/problem/ccc11s3) |  | ||
-[CCC'10 S3](https://dmoj.ca/problem/ccc10s3) |  | ||
+[CCC'12 S3](https://dmoj.ca/problem/ccc12s3) | Just read the question carefully, implementation problem | ||
+[CCC'11 S3](https://dmoj.ca/problem/ccc11s3) | Just use recursion | 1/5 | Done| 06-03-2022|[ccc11s3.cpp](ccc11s3.cpp)
+[CCC'10 S3](https://dmoj.ca/problem/ccc10s3) | Seems pretty similar to ccc21s3, where you want to minimize a certain distance from X amount of things |3.5 ||
 [CCC'09 S3](https://dmoj.ca/problem/ccc09s3) | Graph Theory | 1/5| Done | 06-05-2022 |[ccc09s3.cpp](ccc09s3.cpp) |
 [CCC'08 S3](https://dmoj.ca/problem/ccc08s3) |  | ||
 [CCC'07 S3](https://dmoj.ca/problem/ccc07s3) |  | ||
