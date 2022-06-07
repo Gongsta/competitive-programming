@@ -10,7 +10,7 @@ Obervations:
    
    Writing down everything, I think I figured it out 
     
-    if K >= 2N, return -1
+    if K >= 2N, return -1 (WRONG)
 
 */
 int main() {

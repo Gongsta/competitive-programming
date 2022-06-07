@@ -16,7 +16,12 @@ Credits to [Andy Zhu's page](https://github.com/andyzhu23/Competitive-Programmin
 # Problems
 - See [CCC/README.md]() for the CCC problems.
 
-status - attempted, complete, not started
+Problem | Skills Needed | Difficulty | Status | Date | Solution
+:---:|:---:|:---:|:---: | :---: | :---: 
+[Maximum Sum](https://dmoj.ca/problem/dp1p1) | Dynamic Programming |  | |  | [maximumsum.cpp](DMOJ/problems/maximumsum.cpp) |
+[A Game](https://dmoj.ca/problem/dp1p2) | Dynamic Programming |  | |  | |
+[Longest Increasing Subsequence](https://dmoj.ca/problem/dp1p3) | Dynamic Programming |  | |  | |
+[Counting Subsequences](https://dmoj.ca/problem/dp1p4) | Dynamic Programming |  | |  | |
 
 # Contest
 Contest | Date | Score | Ranking | Reflection
