@@ -2,8 +2,9 @@
 
 using namespace std;
 
-long int arr[1000000];
-long int length[1000000] = {0};
+// Binary search Solution to the longest subsequence problem
+long int arr[5000];
+long int length[5000];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -13,7 +14,6 @@ int main() {
     for (int i=0; i<N; i++) {
         cin >> arr[i];
     }
-    
         
     int l, mid;
     size = 0;
@@ -33,6 +33,6 @@ int main() {
         size = max(size, i+1);
         
     }
-    cout << size;
+    cout << size << endl;
     return 0;
 }
