@@ -1,6 +1,7 @@
 # Codeforces
 Some more specific notes here. See the [README.md](../README.md) for contest results + reflections.
 
+Problem ratings in codeforces: "Basically, if a problem has a rating of x, then a participant with a rating of x will have roughly a 50% chance of solving that problem in a contest. So based on your current rating, you can estimate how hard a problem will be for you."
 
 Problem | Skills Needed | Difficulty | Date | Solution
 :---:|:---:|:---:|:---: | :---: | :---: 
