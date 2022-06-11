@@ -19,6 +19,7 @@
 		"system_error": "cpp",
 		"ostream": "cpp",
 		"complex": "cpp",
-		"valarray": "cpp"
+		"valarray": "cpp",
+		"bit": "cpp"
 	}
 }

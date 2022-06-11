@@ -2,74 +2,68 @@
 
 using namespace std;
 
-priority_queue<pair<int, int> > pq;
-int arr[100001];
+/*
+I came up with the topological sort solution, when really I could have come up with something simpler. 
+
+I think to practice, you need to get better at visualizing and understanding.
+
+OMG, I did not realize the array was in a non-decreasing order, which makes solving the problem much easier.
+I was getting TLE...
+*/
+int arr[100000];
+int final[100000];
+unordered_map<int, vector<int> > m;
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
     int t;
-    int n, s;
-    int curr_val, prev_val;
-    int curr_i, prev_i;
-    int val;
     cin >> t;
     while (t--) {
+        int n;
         cin >> n;
-        // Topological sort? I didn't see it was in a non-decreasing order...
-        for (int i=1; i<=n; i++) {
-            cin >> val;
-            pq.push({val, i});
+        m.clear();
+        int l = 1;
+        int r = 1;
+        for (int i=1;i<=n;i++) {
+            final[i] = i;
         }
-        if (n==1) {
-            cout << "-1" << endl;
-            continue;
-        }
-        int first_i, first_val;
-        bool single = true;
-        first_i = prev_i = pq.top().second;
-        first_val = prev_val = pq.top().first;
-        bool error = false;
-        pq.pop();
-        while (!pq.empty()) {
-            curr_i = pq.top().second;
-            curr_val = pq.top().first;
-            pq.pop();
-            if (!error) {
-                if (curr_val == prev_val) {
-                    arr[curr_i] = prev_i;
-                    prev_i = curr_i;
-                    single = false;
-                } else {
-                    if (!single) {
-                        arr[first_i] = prev_i;
-                        first_i = prev_i = curr_i;
-                        first_val = prev_val = curr_val;
-                        single = true;
-                    } else {
-                        error = true;
+        int count = 0;
+        bool works = true;
+        for (int i=1;i<=n;i++) {
+            cin >> arr[i];
+            if (arr[i] != arr[i-1] && i > 1) {
+                if (count == 1 || i == n) {
+                    works = false;
+                } else { // Perform rotation
+                    rotate(final+l,final+l+1,final+l+count);
+                    l = i;
+                    count = 1;
+                }
+            } else {
+                count++;
+                if (i == n) {
+                    if (count == 1) {
+                        works = false;
+                    } else { // Perform rotation
+                        rotate(final+l,final+l+1, final+l+count);
                     }
-
                 }
+
             }
         }
-        if (!single) {
-            arr[first_i] = curr_i;
-            single = true;
-        } else {
-            error = true;
+        if (n == 1) {
+            works = false;
         }
 
-        if (error) {
-            cout << "-1" << endl;
-        } else {
-            for (int i=1; i<=n;i++) {
-                cout << arr[i];
-                if (i!=n) {
-                    cout << " ";
-                } else {
+        if (works) {
+            for (int i=1;i<=n;i++) {
+                cout << final[i];
+                if (i == n) {
                     cout << endl;
+                } else {
+                    cout << " ";
                 }
             }
+        } else {
+            cout << -1 << endl;
         }
     }
     return 0;
