@@ -33,7 +33,7 @@ Problem | Skills Needed | Difficulty | Status | Date | Solution
 [CCC'18 S4](https://dmoj.ca/problem/ccc18s4) | I came up with a DP brute force way of doing it, which I am pretty proud of, but it was still too slow. You notice that you only need to compute certain intervals, I notice pattern similar to the [Min number of 0's in range [a,b] problem!]() (although I don't think I solved that one either) | ||
 [CCC'17 S4](https://dmoj.ca/problem/ccc17s4) |  | ||
 [CCC'16 S4](https://dmoj.ca/problem/ccc16s4) |  | ||
-[CCC'15 S4](https://dmoj.ca/problem/ccc15s4) |  | ||
+[CCC'15 S4](https://dmoj.ca/problem/ccc15s4) | Convex Hull problem, it's a variation of Dijkstras. For some reason, I fail this one test case ;-; Wasted like an entire hour on this problem.... | ||
 [CCC'14 S4](https://dmoj.ca/problem/ccc14s4) |  | ||
 [CCC'13 S4](https://dmoj.ca/problem/ccc13s4) |  | ||
 [CCC'12 S4](https://dmoj.ca/problem/ccc12s4) |  | ||
