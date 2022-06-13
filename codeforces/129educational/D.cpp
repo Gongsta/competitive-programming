@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 
+// Always using the largest digit does not always work... so my method doesn't work
 using namespace std;
 
 set<int, greater<int> > ss;
