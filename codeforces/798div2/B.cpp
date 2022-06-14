@@ -5,6 +5,7 @@ using namespace std;
 int arr[1000];
 int final[1000];
 unordered_map<int, int> m;
+// Attempted but failed, I think this one can also be brute forced. 
 int main()
 {
     int t;

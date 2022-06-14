@@ -17,71 +17,42 @@ int main() {
         /*
         Insight: a has to be in front of b
         b has to be in front of c
+        
+        So my solution is right! But I just couldn't implement it. 
+        Actually I made the implementation pretty complicated. 
+        
+        Instead of shifting b in front of a, and c in front of b, I think to think
+        about it of always moving b. 
         */
-       vector<int> s_b_pos;
-       vector<int> t_b_pos;
-       vector<int> s_c_pos;
-       vector<int> t_c_pos;
-        for (int i=0;i<n;i++) {
-            if (s[i] == 'b') {
-                s_b_pos.push_back(i);
-            } else if (s[i] == 'c') {
-                s_c_pos.push_back(i);
-            }
-            if (t[i] == 'b') {
-                t_b_pos.push_back(i);
-            } else if (t[i] == 'c') {
-                t_c_pos.push_back(i);
-            }
+       int s_count = 0;
+       int t_count = 0;
+       for (int i=0;i<n;i++) {
+        if (s[i] == 'b') {
+            s_count++;
         }
-        
-        if (s_b_pos.size() != t_b_pos.size()) {
+        if (t[i] == 'b') {
+            t_count++;
+        }
+       }
+       if (s_count != t_count) {
             works = false;
-        }
-        if (s_c_pos.size() != t_c_pos.size()) {
-            works = false;
-        }
-        
-        for (int i=0;i<s_c_pos.size();i++) {
-            if (s_c_pos[i] == t_c_pos[i]) continue;
-            if (s_c_pos[i] < t_c_pos[i]) {
-                works = false;
-                break;
-            } else {
-                for (int j=t_c_pos[i];j<s_c_pos[i];j++) {
-                    if (s[j] == 'a') {
-                        works = false;
-                        break;
-                    }             
-                }
-                
-                if (works) {
-                    for (int l=0;l<s_b_pos.size();l++) { // Update the b positions
-                        if (s_b_pos[l] >= t_c_pos[i] && s_b_pos[l] < s_c_pos[i]) {
-                            s_b_pos[l]++;
-                        }
-                        if (s_b_pos[l] > s_c_pos[i]) {
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-        for (int i=0;i<s_b_pos.size();i++) {
-            if (s_b_pos[i] == t_b_pos[i]) continue;
-            if (s_b_pos[i] < t_b_pos[i]) {
-                works = false;
-                break;
-            } else {
-                for (int j=t_b_pos[i];j<s_b_pos[i];j++) {
-                    if (s[j] == 'c') {
-                        works = false;
-                        break;
-                    }             
-                }
-            }
-        }
+       }
 
+       int j = 0;
+       for (int i=0;i<n;i++) {
+            if (!works) break;
+            if (s[i] == 'b') {
+                continue;
+            }
+            while (t[j] == 'b') {
+                j++;
+            }
+            if (s[i] != t[j] || (s[i] == 'a' && i > j) || (s[i] == 'c' && i < j)) {
+                works = false;
+                break;
+            }
+            j++;
+       }
 
         if (works) {
             cout << "YES" << endl;
