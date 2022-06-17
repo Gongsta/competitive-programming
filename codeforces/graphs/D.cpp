@@ -3,6 +3,8 @@
 using namespace std;
 
 vector<int> adj[100001];
+bool visited[100001];
+bool colored[100001];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -15,5 +17,6 @@ int main() {
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
+    dfs(1);
     return 0;
 }
