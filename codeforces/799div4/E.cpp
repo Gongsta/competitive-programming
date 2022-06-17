@@ -2,19 +2,16 @@
 
 using namespace std;
 
-// This doesn't work, see the binary string problem
+// This doesn't work, see the binary string problem, but that solution doesn't work
+// for this problem because they optimize for different things
 
-int curr_sum = 0;
-bool can(vector<int>& pos, int m) {
-    int k = pos.size();
-    int x = k - m;
-    for (int i=0;i<m+1;i++) {
-        if ((i+x-1) - i == curr_sum) {
-            return true;
-        }
+int arr[200000];
+int sum_prefix(int a, int b) {
+    if (a == 0) {
+        return arr[b];
+    } else {
+        return arr[b] - arr[a-1];
     }
-    return false;
-    
 }
 int main() {
     ios::sync_with_stdio(0);
@@ -25,32 +22,35 @@ int main() {
     while (t--) {
         int n, s;
         cin >> n >> s;
-        int arr[n];
         vector<int> pos;
+        int curr_sum = 0;
         for (int i=0;i<n;i++) {
             cin >> arr[i];
-            if (arr[i] == 1) {
-                pos.push_back(i);
-                curr_sum++;
-            }
         }
-        if (curr_sum < s) {
-            cout << -1 << endl;
-        } else {
-            int l = 0;
-            int r = n - 1;
-            int count = 0;
+        for (int i=1;i<n;i++) {
+            arr[i] += arr[i-1];
+        }
+        int max_len = -1;
+        for (int i=0;i<n;i++) {
+            int l = i;
+            int r = n-1;
             while (l<=r) {
-                int mid = (l + r) / 2;
-                if (can(pos, mid)) {
-                    r= mid - 1;
-                } else {
+                int mid = (l+r)/2;
+                if (sum_prefix(i, mid) <= s)  {
+                    if (sum_prefix(i, mid)== s) {
+                        max_len = max(max_len, mid-i + 1);
+                    }
                     l = mid + 1;
+                } else if (sum_prefix(i, mid) > s) {
+                    r = mid - 1;
                 }
             }
-
-            cout << curr_sum - (r-l) << endl;
-            }
+        }
+        if (max_len != -1) {
+            cout << n - max_len << endl;
+        } else {
+            cout << max_len << endl;
+        }
         }
         
     return 0;
