@@ -9,12 +9,10 @@ int main() {
     int n;
     cin >> n;
     while (n--) {
-        if (n % 4== 0 || n % 4 == 1) {
+        if (n % 4 == 0 || n % 4 == 1) {
             cout << 'a';
-        } else if (n % 4 == 2) {
-            cout << 'b';
         } else {
-            cout << 'c';
+            cout << 'b';
         }
     }
     cout << endl;
