@@ -8,6 +8,20 @@ int main() {
     
     int n,m;
     cin >> n >> m; 
+    
+    int a = 5;
+    int a_count = 0;
+    a_count = (n - a)/ 4 + 1;
+    for (int i=0;i<a_count;i++) {
+        cout << "4";
+    }
+    cout << "5";
+    cout << endl;
+    for (int i=0;i<=a_count;i++) {
+        cout << "5";
+    }
+    cout << endl;
+
 
     return 0;
 }
