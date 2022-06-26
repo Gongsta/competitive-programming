@@ -17,19 +17,27 @@ int main() {
         string val;
         cin >> val;
         string final;
-        if (val[0] == '9') {
-            if (val[final.length()-1] >= '2') {
-                final += "1";
-                for (int i=1;i<val.length()-1;i++) {
-                    final += to_string(9 - (val[i]-'0'));
-                }
-                final += to_string(11 - (val[val.length()-1]-'0'));
-
+        for (int i=0;i<val.length();i++) {
+            final += ('0' + (9 - (val[i]-'0')));
+        }
+        if (final[0] == '0') {
+            int increment = 0;
+            if (final.back() + 2 > '9') {
+                final.back() = final.back() + 2 -10;
+                increment = 1;
+            } else {
+                final.back() = final.back() + 2;
+                increment = 0;
             }
+            for (int i=final.length()-2;i>=0;i--) {
+                if (final[i] + 1 + increment > '9') {
+                    final[i] = final[i] + 1  + increment - 10; 
+                    increment = 1;
+                } else {
+                    final[i] = final[i] + 1 + increment;
+                    increment = 0;
+                }
 
-        } else {
-            for (int i=0;i<val.length();i++) {
-                final += to_string(9 - (val[i]-'0'));
             }
         }
         cout << final << endl;
