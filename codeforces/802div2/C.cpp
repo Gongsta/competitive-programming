@@ -16,7 +16,7 @@ using namespace std;
 
 */
 
-int a[200000];
+ll a[200000];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -24,12 +24,21 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        memset(a, 0, sizeof(a));
         int n;
         cin >> n;
         for (int i=0;i<n;i++) {
             cin >> a[i];
         }
+        ll total = 0;
+        for (int i=1;i<n;i++) {
+            total += abs(a[i] - a[i-1]);
+            if (a[i] < a[i-1]) {
+                a[0] += a[i] - a[i-1];
+            }
+        }
+        total += abs(a[0]);
+        cout << total << endl;
+
         
 
     }
