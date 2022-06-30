@@ -20,6 +20,7 @@
 		"ostream": "cpp",
 		"complex": "cpp",
 		"valarray": "cpp",
-		"bit": "cpp"
+		"bit": "cpp",
+		"numeric": "cpp"
 	}
 }
