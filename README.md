@@ -52,6 +52,5 @@ CCC Junior 2018 | February 2018 | 0 / 5 solved :( | -1 (last) | <details><summar
 [Leetcode Weekly Contest 299](https://leetcode.com/contest/weekly-contest-299) | June 25, 2022 | 2 / 4 solved  | [?](https://leetcode.com/contest/weekly-contest-299/ranking) | <details><summary>6th Leetcode Contest</summary>So I started 10 minutes late because I forgot there was a Leetcode contest... ended up only solving 2 / 4 of the problems. The third problem was a "Hard" problem on dividing an array and I really didn't know how to approach it.
 [DMOPC '21 June Contest](?)|June 26, 2022| 1 / 5 solved |[120](https://dmoj.ca/contest/dmopc21c10/ranking/#!Gongsta)| <details><summary>5th DMOJ Contest</summary>Finally doing my first DMOPC contest today.I am so frustrated with myself because I totally had the right answer for question 2, for some reason, I just couldn't come up with a correct implementation... I kept debugging for 90 minutes and eventually gave up. I totally could have gotten the first two correct, but it's okay, you just have ot keep practicing. Be patient.
 
-I decided to move my results to Notion, as it is easier to organize and manage. 
 
 [DMOJ TEMPLATE](?)| DATE, 2022| X / 5 solved |[?](https://dmoj.ca/contest/bpc1s/ranking/#!Gongsta)| <details><summary>Xth DMOJ Contest</summary>

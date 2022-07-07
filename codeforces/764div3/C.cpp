@@ -10,54 +10,30 @@ int main() {
     
     int t;
     cin >> t;
-    map<int,int> m;
     while (t--) {
-        m.clear();
         int n;
         cin >> n;
         int a[n];
+        bool used[n+1] = {false};
         for (int i=0;i<n;i++) {
             cin >> a[i];
             while (a[i] > n) {
-                a[i]/= 2;
+                a[i] /= 2;
             }
         }
-        sort(a,a+n);
+        sort(a,a+n, greater<int>());
         bool works = true;
         for (int i=0;i<n;i++) {
-            if (m.count(a[i])) {
-                m[a[i]]++;
+            while (used[a[i]] && a[i] > 0) {
+                a[i] /= 2;
+            }
+            if (a[i] == 0) {
+                works = false;
+                break;
             } else {
-                m[a[i]] = 1;
+                used[a[i]] = true;
             }
         }
-        for (int i=1;i<=n;i++) {
-            if (m.count(i)) {
-                continue;
-            } else {
-                bool check = false;
-                for (auto& x: m) {
-                    if (x.first < i || x.second == 1) continue;
-                    int temp = x.first;
-                    while (temp >= i) {
-                        if (temp == i) {
-                            check = true;
-                        }
-                        temp /= 2;
-
-                    }
-                    if (check) {
-                        x.second--;
-                        break;
-                    }
-                }
-                if (!check) {
-                    works = false;
-                    break;
-                }
-            }
-        }
-
         if (works) {
             cout << "YES" << endl;
         } else {
