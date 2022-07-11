@@ -35,6 +35,6 @@ int main() {
             count++;
         }
     }
-    cout << count + extra << endl;
+    cout << count + extra << '\n';
     return 0;
 }
