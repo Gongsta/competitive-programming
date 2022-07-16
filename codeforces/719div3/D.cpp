@@ -4,19 +4,7 @@ typedef long long ll;
 
 using namespace std;
 
-/*
-4 -4 4 -4
-8 0 8 0 (+4)
-0 -8 0 0 (+8)
--8 -8 0 0 (+8)
--8 -8 -8 -8 (+8)
-0 0 0 0 (+8)
 
-1 -2 3 -4 5
-
-*/
-
-ll a[200000];
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -26,19 +14,24 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
+        int a[n];
         for (int i=0;i<n;i++) {
             cin >> a[i];
         }
-        ll total = 0;
-        for (int i=1;i<n;i++) {
-            total += abs(a[i] - a[i-1]);
-            if (a[i] < a[i-1]) {
-                a[0] += a[i] - a[i-1];
+        map<ll, ll> m;
+        for (int i=0;i<n;i++) {
+            a[i] = a[i] - (i+1);
+            if (m.count(a[i])) {
+                m[a[i]]++;
+            } else {
+                m[a[i]] = 1;
             }
         }
-        total += abs(a[0]);
+        ll total = 0; 
+        for (auto x: m) {
+            total += x.second * (x.second -1) / 2;
+        }
         cout << total << endl;
-
         
 
     }

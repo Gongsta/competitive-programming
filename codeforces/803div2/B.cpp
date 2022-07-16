@@ -12,25 +12,23 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        ll n;
-        cin >> n;
+        int n,k;
+        cin >> n >> k;
         ll a[n];
         for (int i=0;i<n;i++) {
             cin >> a[i];
         }
-        reverse(a, a+n);
-        ll count = 0;
-        ll i=1;
-        ll power = 1;
-        while (i<n) {
-            if (a[i] == a[0]) {
-                i++;
-            } else {
+        int count = 0;
+        for (int i=1;i<n-1;i++) {
+            if (a[i] > a[i-1] + a[i+1]) {
                 count++;
-                i += i;
             }
         }
-        cout << count << endl;
+        if (k > 1) {
+            cout << count << endl;
+        } else {
+            cout << (n - 2) / 2 + (n % 2) << endl;
+        }
 
     }
 
