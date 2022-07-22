@@ -4,6 +4,7 @@ typedef long long ll;
 
 using namespace std;
 
+// This is an implementation problem but I thought I could solve it using a map
 
 int main() {
     ios::sync_with_stdio(0);
@@ -16,50 +17,30 @@ int main() {
         cin >> n >> c >> q;
         string s;
         cin >> s;
-        map<ll, ll> m;
-        for (int i=0;i<n;i++) {
-            m[i] = i;
-        }
         ll curr = n;
-        while (c--) {
-            ll l,r;
-            cin >> l >> r;
-            l--;
-            r--;
-            if (m.count(l)) {
-                m[curr] = m[l];
-            } else {
-                map<ll, ll>::iterator it = m.lower_bound(l);
-                ll start = it->first;
-                ll val = it->second;
-                val -= (start - l);
-                m[curr] = val;
-            }
-            if (m.count(r)) {
-                m[curr + r - l] = m[r];
-            } else {
-                map<ll, ll>::iterator it = m.lower_bound(r);
-                ll start = it->first;
-                ll val = it->second;
-                val -= (start - r);
-                m[curr +  r - l] = val;
-            }
-            curr = curr + r - l + 1;        
+        vector<ll> left(c+1);
+        vector<ll> right(c+1);
+        vector<ll> diff(c+1);
+        left[0] = 0;
+        right[0] = n;
+
+        for(int i=1; i<=c; ++i){
+            ll l, r; cin >> l >> r;
+            l--; r--;
+            left[i] = right[i-1];
+            right[i] = left[i] + (r-l+1);
+            diff[i] = left[i] - l;
         }
         while (q--) {
             ll k;
             cin >> k;
             k--;
-            if (m.count(k)) {
-                cout << s[m[k]] << endl;
-            } else {
-                map<ll, ll>::iterator it = m.lower_bound(k);
-                ll start = it->first;
-                ll val = it->second;
-                val -= (start - k);
-                cout << s[val] << endl;
-
+            for (int i=c;i>0;i--) {
+                if (k < left[i]) continue;
+                else k -= diff[i];
             }
+            cout << s[k] << endl;
+
         }
     }
 
