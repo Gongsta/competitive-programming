@@ -13,19 +13,16 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        vector<ll> a(n);
-        for (int i=0;i<n;i++) {
+        ll a[n+1];
+        for (int i=1;i<=n;i++) {
             cin >> a[i];
         }
         int count = 0;
-        for (ll i=1;i<=2*n;i++) {
-            for (ll j=i+1;j<=2*n;j++) {
-                if ((i * j) > 2 * n) break;
-                a.find(i);
-                a.find(j);
-                if (i + j + 2== a[i] * a[j]) {
+        for (ll i=1;i<=n;i++) {
+            for (ll j=a[i] - i;j<=n;j+=a[i]) {
+                if (j <= i) continue;
+                if (i + j == a[i] * a[j]) {
                     count++;
-
                 }
             }
         }

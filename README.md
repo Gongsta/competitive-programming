@@ -54,4 +54,6 @@ CCC Junior 2018 | February 2018 | 0 / 5 solved :( | -1 (last) | <details><summar
 
 [Codeforces Round #802 (Div. 2)](https://codeforces.com/contest/?) | Jun 19, 2022 | [ 1 / 6 solved](https://codeforces.com/submissions/stevengongg/contest/1700)| [ ? ](https://codeforces.com/contest/1692/standings/participant/134635282#p134635282) |<details><summary>?th Codeforces Contest</summary>Solved A and B in 10 minutes, which I am happy with, and got to Pupil. Am going to spend lots of time working on being able to solve C and D. 
 
+[Codeforces Round #809 (Div. 2)](https://codeforces.com/contest/?) | Jul 21, 2022 | [ 2 / 6 solved](https://codeforces.com/submissions/stevengongg/contest/1700)| [ ? ](https://codeforces.com/contest/1692/standings/participant/134635282#p134635282) |<details><summary>?th Codeforces Contest</summary>Slow with my first 2 solves, which I am not happy with. 
+
 [DMOJ TEMPLATE](?)| DATE, 2022| X / 5 solved |[?](https://dmoj.ca/contest/bpc1s/ranking/#!Gongsta)| <details><summary>Xth DMOJ Contest</summary>
