@@ -4,6 +4,7 @@ typedef long long ll;
 
 using namespace std;
 
+
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -11,22 +12,22 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
+        ll n;
         cin >> n;
-        ll a[n+1];
-        for (int i=1;i<=n;i++) {
-            cin >> a[i];
-        }
-        int count = 0;
-        for (ll i=1;i<=n;i++) {
-            for (ll j=a[i] - i;j<=n;j+=a[i]) {
-                if (j <= i) continue;
-                if (i + j == a[i] * a[j]) {
+        ll count = 0;
+        for (ll a=1;a<=n;a+=2) {
+            ll b= (a * a - 1)/2;
+            if (b + 1 > n) {
+                break;
+            } else {
+                if (b > 0) {
                     count++;
+
                 }
             }
         }
         cout << count << endl;
+        
 
     }
 

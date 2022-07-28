@@ -8,21 +8,36 @@ using namespace std;
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    // The max value of f(i) = 19, since we have the constraint n <= 1e16
     
     int t;
     cin >> t;
-    ll mod = 1e9 + 7;
     while (t--) {
-        ll n;
-        cin >> n;
-        for (int i=1;i<=18;i++) {
-            ll factor = factorial(i);
-            curr = 1;
-            while ()
-            ans += i + 1;
+        ll n,a,b;
+        cin >> n >> a >> b;
+        bool works = false;
+        if (a == 1) {
+            if ((n-1) % b == 0) {
+                cout << "YES" << endl;
+            } else {
+                cout << "NO" << endl;
+            }
+        } else {
+            ll tt = 1;
+            while (tt <= n) {
+                if (tt % b == n % b) {
+                    works = true;
+                    break;
+                }
+                tt *= a;
+            }
+            if (works) {
+                cout << "YES" << endl;
+            } else {
+                cout << "NO" << endl;
+            }
 
         }
+
 
     }
 

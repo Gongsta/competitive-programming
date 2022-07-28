@@ -57,4 +57,6 @@ CCC Junior 2018 | February 2018 | 0 / 5 solved :( | -1 (last) | <details><summar
 [Codeforces Round #808 (Div. 2)](https://codeforces.com/contest/?) | July 15, 2022 | [ 2 / 6 solved](https://codeforces.com/submissions/stevengongg/contest/1700)| [ ? ](https://codeforces.com/contest/1692/standings/participant/134635282#p134635282) |<details><summary>?th Codeforces Contest</summary>I joined the contest 1 hour late...it started at 9:30am instead of the usual 10:35am. So disappointing.
 [Leetcode Weekly Contest 301](https://leetcode.com/contest/weekly-contest-301) | July 16th, 2022 | 4 / 4 solved  | [?](https://leetcode.com/contest/weekly-contest-299/ranking) | <details><summary>?th Leetcode Contest</summary>Happy to have solved all 4 questions, but it took way too long to solve Q3...
 
+[Codeforces Round #809 (Div. 2)](https://codeforces.com/contest/?) | Jul 21, 2022 | [ 2 / 6 solved](https://codeforces.com/submissions/stevengongg/contest/1700)| [ ? ](https://codeforces.com/contest/1692/standings/participant/134635282#p134635282) |<details><summary>?th Codeforces Contest</summary>Slow with my first 2 solves, which I am not happy with. 
+
 [DMOJ TEMPLATE](?)| DATE, 2022| X / 5 solved |[?](https://dmoj.ca/contest/bpc1s/ranking/#!Gongsta)| <details><summary>Xth DMOJ Contest</summary>
