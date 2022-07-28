@@ -2,6 +2,7 @@
 
 using namespace std;
 
+typedef long long ll;
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -9,14 +10,17 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n,x;
+        ll n,x;
         cin >> n >> x;
-        int arr[n];
+        ll arr[n];
         for (int i=0;i<n;i++) {
             cin >> arr[i];
         }
         sort(arr, arr+n);
-        int total = 0;
+        for (int i=1;i<n;i++) {
+            arr[i] += arr[i-1];
+        }
+        ll total = 0;
         for (int i=0;i<n;i++) {
             if (x - arr[i] >= 0) {
                 total += x - arr[i] + 1;
@@ -24,6 +28,7 @@ int main() {
                 break;
             }
         }
+        cout << total << endl;
 
     }
 
