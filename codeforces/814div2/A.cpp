@@ -14,15 +14,19 @@ int main() {
     while (t--) {
         int n,m;
         cin >> n >> m;
-        int a[n];
-        for (int i=0;i<n;i++) {
-            cin >> a[i];
+        int odd = 0;
+        if (n % 2 == 1) {
+            odd += 1;
         }
-        for (int i=0;i<m;i++) {
-            int x,y;
-            cin >> x >> y;
+        if (m % 2 == 1) {
+            odd += 1;
         }
-        
+        odd %= 2;
+        if (odd == 0) {
+            cout << "Tonya" << endl;
+        } else {
+            cout << "Burenka" << endl;
+        }
 
     }
 
