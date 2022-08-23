@@ -4,6 +4,20 @@ typedef long long ll;
 
 using namespace std;
 
+bool check_valid(string &s) {
+    int curr = 0;
+    for (auto x: s) {
+        if (x == '(') {
+            curr++;
+        } else {
+            curr--;
+            if (curr < 0) return false;
+        }
+    }
+    if (curr != 0) return false;
+    return true;
+
+}
 
 int main() {
     ios::sync_with_stdio(0);
@@ -14,61 +28,40 @@ int main() {
     while (t--) {
         string s;
         cin >> s;
-        int n = s.length();
-        s[0] = '(';
-        s[n-1] = ')';
-        int l = 0;
-        int r = n-1;
-        bool works = true;
-        int questions[n];
-        questions[0] = 0;
-        for (int i=0;i<n;i++) {
-            if (i != 0) {
-                questions[i] = questions[i-1];
-            } else {
-                questions[i] = 0;
-            }
-            if (s[i] == '?') {
-                questions[i]++;
+        string greedy_string;
+        int total_left =0;
+        for (auto x: s) {
+            if (x == '(') {
+                total_left++;
             }
         }
-        while (l <= r) {
-            if (s[l] == ')' || s[l] == '?') {
-                l++;
-                continue;
-            }
-            if (s[r] == '(') {
-                r--;
-                continue;
-            }
-            if (s[l] == '(') {
-                while (s[r] != ')') {
-                    r--;
-                    if (r < l) {
-                        break;
-                    }
-                }
-            }
-            if (r < l) {
-                break;
-            }
-            if (s[l] == '(' &&  s[r] == ')') {
-                if (l == 0) {
-                    if (questions[r] > 1) {
-                        works = false;
-                        break;
-                    }
+        int left_count = total_left;
+        int n = s.length();
+        bool works = true;
+        int last_open = -1, first_close = -1;
+        for (int i=0;i<s.length();i++) {
+            char x = s[i];
+            if (x == '(') {
+                greedy_string += x;
+            } else if (x == ')') {
+                greedy_string += ')';
+            } else {
+                if (left_count < n / 2) {
+                    left_count++;
+                    greedy_string += '(';
+                    last_open = i;
                 } else {
-                    if (questions[r] - questions[l-1] > 1) {
-                        works = false;
-                        break;
+                    if (first_close == -1) {
+                        first_close = i;
                     }
+                    greedy_string += ')';
                 }
-                l++;
-                r--;
-                if (!works) {
-                    break;
-                }
+            }
+        }
+        if (last_open != -1 && first_close != -1) {
+            swap(greedy_string[last_open], greedy_string[first_close]);
+            if (check_valid(greedy_string)) {
+                works = false;
             }
         }
         if (works) {
@@ -76,8 +69,6 @@ int main() {
         } else {
             cout << "NO" << endl;
         }
-
-
     }
 
     return 0;
