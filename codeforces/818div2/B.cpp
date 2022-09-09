@@ -12,18 +12,20 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n,q;
-        cin >> n >> q;
-        int h[n];
-        int w[n];
+        int n,k,c,r;
+        cin >> n >> k >> r >> c;
+        r--;
+        c--;
+        string ss;
         for (int i=0;i<n;i++) {
-            cin >> h[i];
-            cin >> w[i];
+            ss += '.';
         }
-        while (q--) {
-            int hs,ws,hb,wb;
-            cin >> hs >> ws >> hb >> wb;
+        string s[n];
+        for (int i=0;i<n;i++) {
+            s[i] = ss;
         }
+        s[r][c] = 'X';
+
 
     }
 

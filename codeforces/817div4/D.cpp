@@ -16,8 +16,8 @@ int main() {
         cin >> n;
         string s;
         cin >> s;
-        int curr = 0;
-        int curr_sum = 0;
+        ll curr = 0;
+        ll curr_sum = 0;
         for (int i=0;i<n;i++) {
             if (s[i] == 'R') {
                 curr_sum += n - i - 1;
