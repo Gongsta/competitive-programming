@@ -13,24 +13,26 @@ int main() {
     cin >> t;
     while (t--) {
         int n,m;
-        cin >> n >> m;
         string a,b;
+        cin >> n >> m;
         cin >> a >> b;
-        int a_i = n-1;
-        int b_i = m -1;
-        while (a_i > 0) {
-            if (a[a_i] != b[b_i]) {
+        bool works = false;
+        for (int i=0;i<=n-m;i++) {
+            if (b[0]==a[i]) {
+                works = true;
                 break;
-            }         
-            if (a[a_i-1] != b[b_i-1]) {
-                
             }
-            
         }
-        if (b_i != -1) {
-            cout << "NO" << endl;
-        } else {
+        for (int i=n-m+1;i<n;i++) {
+            if (b[i - (n-m)]!=a[i]) {
+                works = false;
+                break;
+            }
+        }
+        if (works) {
             cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
         }
 
     }
