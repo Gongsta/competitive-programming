@@ -65,7 +65,12 @@ CCC Junior 2018 | February 2018 | 0 / 5 solved :( | -1 (last) | <details><summar
 [Educational Codeforces Round 133](https://codeforces.com/contest/1716) | Aug 4, 2022 | [ 2 / 6 solved](https://codeforces.com/submissions/stevengongg/contest/1716)| [ 2787 ](https://codeforces.com/contest/1716/standings/participant/137712685#p137712685) |<details><summary>Codeforces Contest</summary>
 [Yet Another Contest 4](https://dmoj.ca/contest/yac4)|Aug 6, 2022| (2.5) / 6 solved |[? (? total)](https://dmoj.ca/contest/yac4/ranking/#!Gongsta)| <details><summary>DMOJ Contest</summary>Good performance improvement over YAC3.
 [Leetcode Weekly Contest 305](https://leetcode.com/contest/weekly-contest-305) | Aug 6, 2022 | 2 / 4 solved  | [7224](https://leetcode.com/contest/weekly-contest-305/ranking) | <details><summary>Leetcode Contest</summary>Really poor performance, I am disappointed with myself.
-[Leetcode Weekly Contest 307](https://leetcode.com/contest/weekly-contest-307) | Aug 20, 2022 | 4 / 4 solved  | [?](https://leetcode.com/contest/weekly-contest-307/ranking) | <details><summary>Leetcode Contest</summary>
-[Google Kickstart Round E](https://leetcode.com/contest/weekly-contest-307) | Aug 20, 2022 | 3 / 4 solved  | [?](https://leetcode.com/contest/weekly-contest-307/ranking) | <details><summary>Leetcode Contest</summary>Last question was realllly good, I think it's about finding a certain subset, but I really didn't know how to implement it.
+[Leetcode Weekly Contest 307](https://leetcode.com/contest/weekly-contest-307) | Aug 20, 2022 | 4 / 4 solved  | [2394](https://leetcode.com/contest/weekly-contest-307/ranking) | <details><summary>Leetcode Contest</summary>
+[Meta/Facebook Hacker Cup](https://www.facebook.com/codingcompetitions/hacker-cup) | Sept 24, 2022 | 0 / 4 solved  | [?](https://leetcode.com/contest/weekly-contest-307/ranking) | <details><summary>Meta Hacker Cup</summary>What a terrible performance. I thought I solved A1, the other questions seemed way too hard for me to solve. However, I ended up failing system testing...which is really unfortunate. I haven't done many contests in the past month and I start to feel like I am getting a lot more rusty. Lots of online coding interviews coming up, I just messed up another OA. Need to focus.
 
 [DMOJ TEMPLATE](?)| DATE, 2022| X / 5 solved |[?](https://dmoj.ca/contest/bpc1s/ranking/#!Gongsta)| <details><summary>Xth DMOJ Contest</summary>
+
+### Other Problems That I did and messed up
+I did this OA, all 3 technical questions I couldn't get the right answer
+- Number subsequences of length 4 that are palindromes
+- Smallest possible concatenated string (simply sorting and concatenating doesn't work)
