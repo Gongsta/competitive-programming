@@ -6,7 +6,7 @@ using namespace std;
 
 ll prefix[100001];
 
-ll sum(int i, int n) {
+ll sum(ll i, ll n) {
     return (n) * (n + 1) / 2 - (i - 1) * (i) / 2;
 }
 
