@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-
 #include <algorithm>
 #include <bitset>
 #include <iostream>
@@ -30,6 +27,14 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, k;
+        cin >> n >> k;
+        int ans = 0;
+        while (n > 1) {
+            ans++;
+            n -= k - 1;
+        }
+        cout << ans << endl;
     }
 
     return 0;
