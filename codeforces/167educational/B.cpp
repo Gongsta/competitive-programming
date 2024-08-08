@@ -31,6 +31,23 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        string a;
+        string b;
+        cin >> a >> b;
+        int ans = a.size() + b.size();
+        for (int end = b.size() - 1; end >= 0; end--) {
+            int p = end;
+            for (int i = a.size() - 1; i >= 0; i--) {
+                if (p < 0) {
+                    break;
+                }
+                if (b[p] == a[i]) {
+                    p--;
+                }
+            }
+            ans = min(ans, (int)a.size() + (p + 1) + ((int)b.size() - 1 - end));
+        }
+        cout << ans << endl;
     }
 
     return 0;

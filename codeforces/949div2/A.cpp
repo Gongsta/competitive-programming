@@ -31,6 +31,15 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int l, r;
+        cin >> l >> r;
+        int num = 1;
+        int ans = 0;
+        while (num << 1 <= r) {
+            num = num << 1;
+            ans++;
+        }
+        cout << ans << endl;
     }
 
     return 0;

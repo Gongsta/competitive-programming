@@ -31,6 +31,17 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int a[n];
+        int max_num = -1;
+        for (int i=0;i<n;i++) {
+            cin >> a[i];
+            if (i != n-1) {
+                max_num = max(max_num, a[i]);
+            }
+        }
+        cout << a[n-1] + max_num << endl;
     }
 
     return 0;
