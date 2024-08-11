@@ -4,10 +4,8 @@
 #include <algorithm>
 #include <bitset>
 #include <cmath>
-#include <iomanip>
 #include <iostream>
 #include <iterator>
-#include <limits>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -33,6 +31,15 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int xc, yc, k;
+        cin >> xc >> yc >> k;
+        for (int i = 1; i <= k / 2; i++) {
+            cout << xc - i << " " << yc - i << endl;
+            cout << xc + i << " " << yc + i << endl;
+        }
+        if (k % 2 == 1) {
+            cout << xc << " " << yc << endl;
+        }
     }
 
     return 0;

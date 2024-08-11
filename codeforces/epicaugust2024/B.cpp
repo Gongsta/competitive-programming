@@ -23,26 +23,17 @@
 typedef long long ll;
 
 using namespace std;
+
 /*
-Alice will eat the smallest, bob will eat the greatest cake. why doesn't this greedy solution work?
+Can bob win if the arrays are different?
+2 3
+3 2
 
-1 3 3 4 5
 
-non optimal
+In here, bob wins even though it's not reversed.
+4
 1
-3
-5
 
-optimal
-1 3
-
-So bob needs to use his brain. Alice should always pick the smallest number??
-- Yes, because if he picks the bigger number, Alice can't eat the smaller number anymore. yea, so it doesn't make a difference.
-
-dp[n][n]
-
-If alice turn,
-dp[i] = max(dp[i+1])
 */
 int main() {
     ios::sync_with_stdio(0);
@@ -53,17 +44,26 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
+        vector<int> a(n);
+        vector<int> b(n);
         for (int i = 0; i < n; i++) {
             cin >> a[i];
         }
-        int dp[n][n];
-        memset(dp, 0, sizeof(dp));
-        for (int i=0;i<n;i++) {
-            dp[n-1][i] = 
-
-        }
         for (int i = 0; i < n; i++) {
-            for (int j =i; j < n; j++) {
+            cin >> b[i];
+        }
+        bool works = false;
+        if (a == b) {
+            works = true;
+        }
+        reverse(b.begin(), b.end());
+        if (a == b) {
+            works = true;
+        }
+        if (works) {
+            cout << "Bob" << endl;
+        } else {
+            cout << "Alice" << endl;
         }
     }
 

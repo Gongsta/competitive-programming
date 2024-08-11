@@ -24,21 +24,6 @@ typedef long long ll;
 
 using namespace std;
 
-/*
-8 7 9
-
-8 7 7
-7 7 6
-7 6 5
-6 7
-
-lag = 3
-5 7 5
-
-7 5 7
-
-lag = 3
-*/
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -46,25 +31,22 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        ll a[n];
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
+        int n, k;
+        cin >> n >> k;
+        int ans = 1;
+        if (k == 0) {
+            ans = 0;
         }
-        ll ans = a[n - 1];
-        ll lag = 0;
-        for (int i = n - 2; i >= 0; i--) {
-            if (a[i] > a[i + 1]) {
-                a[i] = max(a[i + 1], a[i] - lag);
-                if (a[i] == a[i + 1]) {
-                    lag += 1;
-                }
-            } else {
-                lag += a[i + 1] - a[i] + 1;
+        k -= n;
+        int count = 1;
+        while (k > 0) {
+            count++;
+            if (count == 2) {
+                n--;
+                count = 0;
             }
-            ans = max(ans, lag + a[i]);
-            // cout << lag << " " << ans << endl;
+            k -= n;
+            ans++;
         }
         cout << ans << endl;
     }

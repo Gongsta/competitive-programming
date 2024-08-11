@@ -4,10 +4,8 @@
 #include <algorithm>
 #include <bitset>
 #include <cmath>
-#include <iomanip>
 #include <iostream>
 #include <iterator>
-#include <limits>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -33,6 +31,27 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, m;
+        cin >> n >> m;
+        string s;
+        cin >> s;
+        int ind[m];
+        for (int i = 0; i < m; i++) {
+            cin >> ind[i];
+        }
+        string c;
+        cin >> c;
+        sort(c.begin(), c.end());
+        set<int> ss;
+        for (int i = 0; i < m; i++) {
+            ss.insert(ind[i] - 1);  // 0-indexed
+        }
+        int p = 0;
+        for (int x : ss) {
+            s[x] = c[p];
+            p++;
+        }
+        cout << s << endl;
     }
 
     return 0;

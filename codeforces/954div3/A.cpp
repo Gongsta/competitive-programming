@@ -4,10 +4,8 @@
 #include <algorithm>
 #include <bitset>
 #include <cmath>
-#include <iomanip>
 #include <iostream>
 #include <iterator>
-#include <limits>
 #include <map>
 #include <memory>
 #include <mutex>
@@ -33,6 +31,15 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int x[3];
+        cin >> x[0] >> x[1] >> x[2];
+        sort(x, x + 3);
+        int ans = 3 * x[2];
+        for (int i = x[0]; i <= x[2]; i++) {
+            int local_ans = abs(x[0] - i) + abs(x[1] - i) + abs(x[2] - i);
+            ans = min(ans, local_ans);
+        }
+        cout << ans << endl;
     }
 
     return 0;
