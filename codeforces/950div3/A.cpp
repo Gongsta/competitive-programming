@@ -33,8 +33,20 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n,k;
-        cin >> n >> k;
+        int n, m;
+        cin >> n >> m;
+        string a;
+        cin >> a;
+        int ans = 0;
+        string check = "ABCDEFG";
+        unordered_map<char, int> mm;
+        for (auto c: a) {
+            mm[c]++;
+        }
+        for (auto c: check) {
+            ans += max(0, m - mm[c]);
+        }
+        cout << ans << endl;
     }
 
     return 0;

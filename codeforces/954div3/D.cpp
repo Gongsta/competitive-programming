@@ -91,6 +91,12 @@ int main() {
                 if (i < n - 2) {
                     after = (cumsum[n - 1] - cumsum[i + 1]);
                 }
+                after = max(after, 1);
+                for (int j = i + 2; j < n; j++) {
+                    if (s[j] == '0') {
+                        after = 0;
+                    }
+                }
                 int local_ans = value(s, i);
                 if (local_ans * before > local_ans + before) {
                     local_ans += before;
@@ -98,7 +104,6 @@ int main() {
                     local_ans *= before;
                 }
 
-                after = max(after, 1);
                 if (local_ans * after > local_ans + after) {
                     local_ans += after;
                 } else {

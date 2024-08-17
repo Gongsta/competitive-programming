@@ -33,8 +33,15 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n,k;
-        cin >> n >> k;
+        ll n, x;
+        cin >> n >> x;
+        ll ans = 0;
+        for (ll a = 1; a <= n; a++) {
+            for (ll b = 1; b <= n / a; b++) {
+                ans += min(max((x - a - b), 0ll), max(((n - a * b) / (a + b)), 0ll));
+            }
+        }
+        cout << ans << endl;
     }
 
     return 0;
