@@ -35,31 +35,30 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
+        int x[n];
+        int cum_sum = 0;
         for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
+            cin >> x[i];
+            cum_sum += x[i];
+        }
+        int average = cum_sum / n;
+
+        sort(x, x + n);
+        int min_dist = x[1] - x[0];
+        for (int i = 1; i < n; i++) {
+            min_dist = min(min_dist, x[i] - x[i - 1]);
+        }
+
+        bool works = true;
+        for (int i = 0; i < n; i++) {
+            if (abs(average - x[i]) > min_dist || x[i] == average) {
+                works = false;
             }
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
-        }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
+        if (works) {
+            cout << "YES" << endl;
         } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
+            cout << "NO" << endl;
         }
     }
 

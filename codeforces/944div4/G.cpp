@@ -25,15 +25,8 @@
 typedef long long ll;
 
 using namespace std;
-
 /*
-Things I have to convince myself:
-- Is it always summing positive the correct answer?
-
-You either always take the positive value, or you always take the negative value. FALSE
-- You only need to take the absolute value once
-
--5 -5 -5 10
+XOR < 4, means for the bits that differ, it should be less than 4. Meaning it can only differ on the 1st and 2nd bit (and any difference for those)
 */
 
 int main() {
@@ -45,28 +38,30 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        ll a[n];
+        int a[n];
+        map<int, queue<int>> m;
         for (int i = 0; i < n; i++) {
             cin >> a[i];
+            m[a[i]].push(i);
         }
-        ll sum = 0;
-        ll idx = 0;
-        ll min_val = 0;
         for (int i = 0; i < n; i++) {
-            sum += a[i];
-            if (sum < min_val) {
-                idx = i;
-                min_val = sum;
+            int min_val = (a[i] >> 2) << 2;
+            for (int val = min_val; val < a[i]; val++) {
+                while (m.count(val) && !m[val].empty()) {
+                    int j = m[val].front();
+                    m[val].pop();
+                    if (j > i) {
+                        swap(a[i], a[j]);
+                        m[a[j]].push(j);
+                        break;
+                    }
+                }
             }
         }
-        sum = 0;
         for (int i = 0; i < n; i++) {
-            sum += a[i];
-            if (i == idx) {
-                sum = abs(sum);
-            }
+            cout << a[i] << " ";
         }
-        cout << sum << endl;
+        cout << endl;
     }
 
     return 0;

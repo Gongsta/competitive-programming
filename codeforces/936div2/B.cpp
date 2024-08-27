@@ -33,34 +33,36 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
+        ll max_sum = 0;
+        int n, k;
+        cin >> n >> k;
+        ll a[n];
+        ll MOD = 1e9 + 7;
         for (int i = 0; i < n; i++) {
             cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
-            }
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
+        ll curr_sum = 0;
+        ll cum_sum = 0;
+        int r = 0;
+        for (int r = 0; r < n; r++) {
+            curr_sum += a[r];
+            if (curr_sum < 0) {
+                curr_sum = 0;
+            }
+            max_sum = max(curr_sum, max_sum);
+
+            cum_sum += a[r];
+            cum_sum = (cum_sum + MOD) % MOD;
         }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
-        } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
+        ll add = max_sum;
+        ll add_sum = 0;
+        for (int i = 0; i < k; i++) {
+            add_sum += add;
+            add_sum %= MOD;
+            add *= 2;
+            add %= MOD;
         }
+        cout << (cum_sum + add_sum) % MOD << endl;
     }
 
     return 0;

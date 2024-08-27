@@ -33,34 +33,31 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
+        int n, k;
+        cin >> n >> k;
+        int r, c;
+        vector<bool> rows(n, false);
+        for (int i = 0; i < k; i++) {
+            cin >> r >> c;
+            r--;
+            c--;
+            rows[r] = true;
+            rows[c] = true;
+        }
+        int free = 0;
         for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
+            if (!rows[i]) {
+                free++;
             }
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
+        ll dp[free + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        ll MOD = 1e9 + 7;
+        for (ll i = 2; i <= free; i++) {
+            dp[i] = (dp[i - 1] + 2ll * (i - 1) * dp[i - 2] % MOD) % MOD;
         }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
-        } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
-        }
+        cout << dp[free] << endl;
     }
 
     return 0;

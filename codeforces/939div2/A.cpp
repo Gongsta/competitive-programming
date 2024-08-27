@@ -33,6 +33,20 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int k, q;
+        cin >> k >> q;
+        int a[k];
+        int n[q];
+        int min_num = 100;
+        for (int i = 0; i < k; i++) {
+            cin >> a[i];
+            min_num = min(a[i], min_num);
+        }
+        for (int i = 0; i < q; i++) {
+            cin >> n[i];
+            cout << min(min_num-1, n[i]) << " ";
+        }
+        cout << endl;
     }
 
     return 0;

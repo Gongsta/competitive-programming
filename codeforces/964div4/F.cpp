@@ -24,42 +24,44 @@ typedef long long ll;
 
 using namespace std;
 
-int C(int n, int k) {
-    double res = 1;
-    for (int i = 1; i <= k; ++i) {
-        res = res * (n - k + i) / i;
-    }
-    return (int)(res + 0.01);
+ll factorial[200001];
+ll MOD = 1e9 + 7;
+
+ll inv(ll a) {
+    return a <= 1 ? a : MOD - (long long)(MOD / a) * inv(MOD % a) % MOD;
+}
+
+ll C(ll n, ll k) {
+    if (n < k) return 0;
+    if (n == 0) return 1;
+    return factorial[n] * inv(factorial[k] * factorial[n - k] % MOD) % MOD;
 }
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
+    factorial[0] = 1;
+    for (int i = 1; i <= 200000; i++) {
+        factorial[i] = factorial[i - 1] * i % MOD;
+    }
     int t;
     cin >> t;
     while (t--) {
         int n, k;
         cin >> n >> k;
-        ll a[n + 1];
-        ll prefix[n + 2];
-        prefix[0] = 0;
-        for (int i = 1; i <= n; i++) {
+        int a[n];
+        int x = 0;
+        for (int i = 0; i < n; i++) {
             cin >> a[i];
-            prefix[i] = prefix[i - 1] + a[i];
-        }
-        sort(a + 1, a + n + 1);  // you can't sort it
-        ll ans = 0;
-        for (int i = (k + 1) / 2; i <= n - (k + 1) / 2 + 1; i++) {
-            // ans += (C(i - 1, (k + 1) / 2 - 1) * C(n - i, (k + 1) / 2 - 1));
-            if (a[i] == 0) {
-
-                ans += ((ll)C(i - 1, (k + 1) / 2 - 1) * (ll)C(n - i, (k + 1) / 2 - 1)) * (a[i]) % ((ll)1e9 + 7ll);
-            } else {
-                ans += ((ll)C(i - 1, (k + 1) / 2 - 1) * (ll)C(n - i, (k + 1) / 2 - 1)) * (a[i]) % ((ll)1e9 + 7ll);
+            if (a[i] == 1) {
+                x++;
             }
-            // cout << "ans" << ans << endl;
-            ans = ans % ((ll)1e9 + 7ll);
+        }
+        ll ans = 0;
+        for (int i = k / 2 + 1; i <= k; i++) {
+            ans += (C(x, i) * C(n - x, k - i)) % MOD;
+            ans %= MOD;
         }
         cout << ans << endl;
     }

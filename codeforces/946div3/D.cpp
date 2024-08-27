@@ -35,31 +35,16 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
-        for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
-            }
+        string s;
+        cin >> s;
+        map<char, int> m;
+        for (auto c: s){
+            m[c]++;
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
-        }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
+        if (n % 2 == 1) {
+            cout << "NO" << endl;
         } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
+
         }
     }
 

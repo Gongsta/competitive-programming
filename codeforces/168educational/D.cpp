@@ -22,22 +22,22 @@ using namespace std;
 
 vector<int> adj[200001];
 ll a[200001];
-ll value(int i) {  // most number of times you can decrease this node
-    if (adj[i].size() == 0) {
-        return a[i];
-    }
-    if (adj[i].size() == 1) {
-        if (a[i] >= value(adj[i][0])) {
-            return value(adj[i][0]);
-        } else {
-            return a[i] + (value(adj[i][0]) - a[i]) / 2;
+
+bool possible(int node, ll min_val, ll penalty) {
+    if (adj[node].empty()) {
+        return (a[node] - penalty) >= min_val;
+    } else {
+        bool good = true;
+        // Number to increment by
+        ll pen = max(0ll, min_val - (a[node] - penalty)) + penalty;
+        if (pen > 1e9) {
+            return false;
         }
+        for (auto x : adj[node]) {
+            good = good && possible(x, 0, pen);
+        }
+        return good;
     }
-    int max_increment = min(value(adj[i][0]), value(adj[i][1]));
-    if (a[i] > max_increment) {
-        return max_increment;
-    }
-    return a[i] + (max_increment - a[i]) / 2;
 }
 
 int main() {
@@ -50,9 +50,10 @@ int main() {
         int n;
         cin >> n;
         int p[n];
-        p[0] = 0;
+        ll max_sum = 0;
         for (int i = 0; i < n; i++) {
             cin >> a[i];
+            max_sum += a[i];
             adj[i].clear();
         }
         for (int i = 1; i < n; i++) {
@@ -60,11 +61,20 @@ int main() {
             p[i]--;  // 0-indexed
             adj[p[i]].push_back(i);
         }
-        if (adj[0].size() == 1) {
-            cout << a[0] + value(adj[0][0]) << endl;
-        } else {
-            cout << a[0] + min(value(adj[0][0]), value(adj[0][1])) << endl;
+        ll ans = a[0];
+        ll l = a[0];
+        ll r = max_sum;
+        while (l <= r) {
+            ll mid = (l + r) / 2;
+            // cout << "Mid" << mid << endl;
+            if (possible(0, mid, 0)) {
+                ans = max(ans, mid);
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
         }
+        cout << ans << endl;
     }
 
     return 0;

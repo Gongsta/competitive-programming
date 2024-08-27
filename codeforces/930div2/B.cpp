@@ -1,4 +1,26 @@
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <string.h>
+
+#include <algorithm>
+#include <bitset>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 
 typedef long long ll;
 
@@ -13,42 +35,45 @@ int main() {
     while (t--) {
         int n;
         cin >> n;
-        vector<string> vec(2);
-        cin >> vec[0];
-        cin >> vec[1];
-        vector<vector<int>> c(2, vector<int>(n, 0));
-        int ans1 = vec[1][n - 1] - '0';
-        int ans0 = (vec[0][n - 1] - '0') << 1 + ans1;
-        c[1][n - 1] = 1;
-        c[0][n - 1] = 1;
-        for (int j = n - 2; j >= 0; j--) {
-            for (int i = 1; i >= 0; i--) {
-                if (i == 1) {
-                    ans1 = ((vec[i][j] - '0') << (n - j - 1)) + ans1;
-                    // cout << "j " << j << " " << ans1 << endl;
-                    c[i][j] = c[i][j + 1];
-                } else {
-                    if (ans0 == ans1) {
-                        c[i][j] = c[i][j + 1] + c[i + 1][j];
-                    } else if (ans0 < ans1) {
-                        c[i][j] = c[i][j + 1];
-                    } else {
-                        c[i][j] = c[i + 1][j];
-                        ans0 = ans1;
-                    }
-                    ans0 = ((vec[i][j] - '0') << (n - j)) + ans0;
+        string a[2];
+        cin >> a[0];
+        cin >> a[1];
+        int row = 0;
+        string ans;
+        for (int i = 0; i < n; i++) {
+            if (i == n - 1) {
+                ans += a[row][i];
+                if (row == 0) {
+                    ans += a[row + 1][i];
                 }
-                // cout << ans0 << " " << ans1 << endl;
+            } else {
+                ans += a[row][i];
+                if (row == 0) {  // consider looking down
+                    if (a[row + 1][i] < a[row][i + 1]) {
+                        row++;
+                        ans += a[row][i];
+                    }
+                }
             }
         }
-        string final_ans;
-        for (int i = 0; i <= n; i++) {
-            final_ans += '0' + (ans0 & 1);
-            ans0 = ans0 >> 1;
+        int last_correct_idx = 0;
+        bool works = true;
+        for (int i = 0; i < n; i++) {
+            if (a[0][i] == ans[i] && works) {
+                last_correct_idx = i;
+            } else {
+                works = false;
+            }
         }
-        reverse(final_ans.begin(), final_ans.end());
-        cout << final_ans << endl;
-        cout << c[0][0] << endl;
+        int last_incorrect_idx = -1;
+        for (int i = 0; i < n; i++) {
+            if (a[1][i] != ans[i + 1]) {
+                last_incorrect_idx = i;
+            }
+        }
+
+        cout << ans << endl;
+        cout << last_correct_idx - last_incorrect_idx << endl;
     }
 
     return 0;

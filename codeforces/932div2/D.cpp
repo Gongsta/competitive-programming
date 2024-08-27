@@ -33,34 +33,24 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
+        ll n, c;
+        cin >> n >> c;
+        ll s[n];
+        ll even = 0;
         for (int i = 0; i < n; i++) {
-            cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
+            cin >> s[i];
+            if (s[i] % 2 == 0) {
+                even++;
             }
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
+        ll odd = n - even;
+        ll total = (c + 1) + c * (c + 1ll) / 2ll;
+        for (int i = 0; i < n; i++) {
+            total -= s[i] / 2 + 1;
+            total -= c + 1 - s[i];
         }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
-        } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
-        }
+        total += even * (even + 1ll) / 2ll + odd * (odd + 1ll) / 2ll;
+        cout << total << endl;
     }
 
     return 0;

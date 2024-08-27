@@ -33,6 +33,16 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int p[3];
+        cin >> p[0] >> p[1] >> p[2];
+
+        int sum = p[0] + p[1] + p[2];
+        sort(p, p + 3);
+        if (sum % 2 == 1) {
+            cout << -1 << endl;
+        } else {
+            cout << min(sum / 2, p[0] + p[1]) << endl;
+        }
     }
 
     return 0;

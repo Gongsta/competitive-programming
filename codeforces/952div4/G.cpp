@@ -41,15 +41,36 @@ long long binpow(long long a, long long b) {
 }
 
 ll sum_custom(ll a, ll b, ll base) {
-    ll left = (binpow(base, a) - 1ll) / (base - 1ll);
-    ll right = (binpow(base, b + 1) - 1ll) / (base - 1ll);
-    cout << left << " " << right << endl;
-    return right - left;
+    ll left = (base - 1ll) * (binpow(base, a) - 1ll) / (base - 1ll);
+    ll right = (base - 1ll) * (binpow(base, b) - 1ll) / (base - 1ll);
+    // cout << left << " " << right << endl;
+    return (right - left + ll(1e9 + 7)) % ll(1e9 + 7);
 }
 
 /*
 
 Hypothesis: The digits cannot carry over.
+
+n >= 10^l
+
+Say the number is 9, then we have two choices 0, or 1
+
+2^l for all numbers < 10^{l+1}
+Then, we have 2 ^(l+1), since the one in front is locked.
+
+then for the next one, it's also 9 * 2^(l+1). Notice that we multiply by
+
+0
+1
+00
+10
+01
+11
+2^0 + 2^ 1 + 2^2
+
+
+
+
 */
 int main() {
     ios::sync_with_stdio(0);
@@ -72,9 +93,7 @@ int main() {
 
         } else if (k == 2) {  // 5^n
             cout << sum_custom(l, r, 5) << endl;
-
-        } else if (k == 2) {  // 5^n
-        } else {              // 10^n
+        } else {  // 10^n
             cout << sum_custom(l, r, 10) << endl;
         }
     }

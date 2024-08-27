@@ -33,6 +33,24 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        ll x, y, k;
+        cin >> x >> y >> k;
+        while (k > 0) {
+            ll new_x = x + max(1ll, min(k, y - (x % y)));
+            k -= max(1ll, min(k, y - (x % y)));
+            x = new_x;
+            while (x % y == 0) {
+                x /= y;
+            }
+            // cout << x << " " << k << endl;
+            if (x == 1) {
+                break;
+            }
+        }
+        if (k > 0) {
+            x += k % (y - 1);
+        }
+        cout << x << endl;
     }
 
     return 0;

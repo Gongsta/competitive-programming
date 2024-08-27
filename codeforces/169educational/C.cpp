@@ -33,34 +33,25 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
+        ll n, k;
+        cin >> n >> k;
+        ll a[n];
         for (int i = 0; i < n; i++) {
             cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
+        }
+        sort(a, a + n);
+        int score = 0;
+        for (int i = n - 1; i >= 0; i -= 2) {
+            if (i == 0) {
+                score += a[i];
+            } else {
+                ll dec = min(k, a[i] - a[i - 1]);
+                a[i] -= dec;
+                k -= dec;
+                score += a[i] - a[i - 1];
             }
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
-        }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
-        } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
-        }
+        cout << score << endl;
     }
 
     return 0;

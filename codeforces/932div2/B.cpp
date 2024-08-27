@@ -36,30 +36,42 @@ int main() {
         int n;
         cin >> n;
         int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
+        set<int> s;
         for (int i = 0; i < n; i++) {
             cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
+            s.insert(a[i]);
+        }
+        int mex = 0;
+        for (int i = 0; i <= n; i++) {
+            if (!s.count(i)) {
+                mex = i;
+                break;
             }
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
+        set<int> mex_size;
+        int r = 0;
+        for (int i = 0; i < n; i++) {
+            if (mex_size.size() == mex) {
+                break;
+            }
+            r = i;
+            if (a[i] < mex) {
+                mex_size.insert(a[i]);
+            }
         }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
+        mex_size.clear();
+        for (int i=r+1;i<n;i++) {
+            if (a[i] < mex) {
+                mex_size.insert(a[i]);
+            }
+        }
+        if (mex_size.size() != mex) {
+            cout << -1 << endl;
         } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
+            cout << 2 << endl;
+            cout << 1 << " " << r + 1 << endl;
+            cout << r+2 << " " << n << endl;
+
         }
     }
 

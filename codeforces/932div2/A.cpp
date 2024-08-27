@@ -33,6 +33,17 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        string s;
+        cin >> s;
+        string s_r = s;
+        reverse(s_r.begin(), s_r.end());
+        if (s <= s_r) {
+            cout << s << endl;
+        } else {
+            cout << s_r << s << endl;
+        }
     }
 
     return 0;

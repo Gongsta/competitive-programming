@@ -33,6 +33,29 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        ll n, k;
+        cin >> n >> k;
+        vector<int> ans;
+        ll b = 0;
+        for (int i = 0; i < 30; i++) {
+            if (b + (1 << i) <= k) {
+                b += 1 << i;
+            }
+        }
+        if (n == 1) {
+            ans.push_back(k);
+        } else {
+            ans.push_back(k - b);
+            while (ans.size() < n) {
+                ans.push_back(b);
+                b = 0;
+            }
+        }
+
+        for (auto x : ans) {
+            cout << x << " ";
+        }
+        cout << endl;
     }
 
     return 0;

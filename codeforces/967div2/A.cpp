@@ -36,31 +36,17 @@ int main() {
         int n;
         cin >> n;
         int a[n];
-        int min_i = 0;
-        int mid_i = 0;
-        int max_i = 0;
+        unordered_map<int, int> m;
         for (int i = 0; i < n; i++) {
             cin >> a[i];
-            if (a[i] == 1) {
-                min_i = i;
-            }
-            if (a[i] == 2) {
-                mid_i = i;
-            }
-            if (a[i] == n) {
-                max_i = i;
-            }
+            m[a[i]]++;
         }
-        if (min_i > mid_i) {
-            swap(min_i, mid_i);
+        int ans = 0;
+        for (auto x : m) {
+            ans = max(ans, x.second);
         }
-        if (min_i < max_i && max_i < mid_i) {
-            cout << "1 1" << endl;
-        } else if (max_i < min_i) {
-            cout << max_i + 1 << " " << min_i + 1 << endl;
-        } else {
-            cout << max_i + 1 << " " << mid_i + 1 << endl;
-        }
+
+        cout << n - ans << endl;
     }
 
     return 0;

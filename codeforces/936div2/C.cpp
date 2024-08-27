@@ -33,7 +33,17 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, k;
+        cin >> n >> k;
+        int l = 1;
+        int r = k + 1;
+        while (l <= r) {
+            int mid = (l + r) / 2;
+
+
+        }
     }
+    // number of connected components = k+1, each component has n / (k +1) vertices
 
     return 0;
 }
