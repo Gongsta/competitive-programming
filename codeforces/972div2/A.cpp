@@ -33,6 +33,26 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        char vowels[5];
+        vowels[0] = 'a';
+        vowels[1] = 'e';
+        vowels[2] = 'i';
+        vowels[3] = 'o';
+        vowels[4] = 'u';
+        for (int i = 0; i < 5; i++) {
+            if (i < n % 5) {
+                for (int j = 0; j < n / 5 + 1; j++) {
+                    cout << vowels[i];
+                }
+            } else {
+                for (int j = 0; j < n / 5; j++) {
+                    cout << vowels[i];
+                }
+            }
+        }
+        cout << endl;
     }
 
     return 0;

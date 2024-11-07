@@ -33,6 +33,30 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, k;
+        cin >> n >> k;
+        if (k == 1) {
+            cout << n << endl;
+        } else {
+            int ans = 0;
+            int max_k = k;
+            while (max_k * k <= n) {
+                max_k *= k;
+            }
+            while (n > 0) {
+                while (max_k > n && max_k >= k * k) {
+                    max_k /= k;
+                }
+                if (max_k > n) {
+                    ans += n;
+                    n = 0;
+                } else {
+                    ans++;
+                    n -= max_k;
+                }
+            }
+            cout << ans << endl;
+        }
     }
 
     return 0;

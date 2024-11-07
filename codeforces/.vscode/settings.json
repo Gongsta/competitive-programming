@@ -1,9 +1,12 @@
 {
   "files.associations": {
+    "*.cc": "cpp",
     "unordered_set": "cpp",
     "list": "cpp",
     "vector": "cpp",
-    "string": "cpp"
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "mutex": "cpp"
   },
   "stm32-for-vscode.openOCDPath": false,
   "stm32-for-vscode.armToolchainPath": false

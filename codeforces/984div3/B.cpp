@@ -33,6 +33,30 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, k;
+        cin >> n >> k;
+        map<int, int> btp;
+        for (int i = 0; i < k; i++) {
+            int b, c;
+            cin >> b >> c;
+            btp[b] += c;
+        }
+        vector<int> p;
+        for (auto x : btp) {
+            p.push_back(x.second);
+        }
+        sort(p.begin(), p.end(), greater<int>());
+        int remaining = n;
+        int ans = 0;
+        for (auto x : p) {
+            if (remaining == 0) {
+                break;
+            }
+
+            remaining--;
+            ans += x;
+        }
+        cout << ans << endl;
     }
 
     return 0;

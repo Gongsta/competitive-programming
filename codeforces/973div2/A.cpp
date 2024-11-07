@@ -33,6 +33,15 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int x, y;
+        cin >> x >> y;
+        if (n % min(x, y) == 0) {
+            cout << n / min(x, y) << endl;
+        } else {
+            cout << n / min(x, y) + 1 << endl;
+        }
     }
 
     return 0;

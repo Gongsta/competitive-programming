@@ -33,6 +33,29 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
+        ll n, m;
+        cin >> n >> m;
+        ll a[n];
+        ll b[n];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        for (int i = 0; i < n; i++) {
+            cin >> b[i];
+        }
+
+        ll ans = 0;
+        for (int i = n - 1; i > m - 1; i--) {
+            ans += min(a[i], b[i]);
+        }
+        ll to_add = a[m - 1];
+        ll b_sum = 0;
+        for (int i = m - 1; i > 0; i--) {
+            b_sum += b[i];
+            to_add = min(to_add, b_sum + a[i - 1]);
+        }
+
+        cout << ans + to_add << endl;
     }
 
     return 0;

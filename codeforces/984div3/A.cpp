@@ -33,6 +33,23 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        bool works = true;
+        for (int i = 1; i < n; i++) {
+            if (abs(a[i] - a[i - 1]) != 5 && abs(a[i] - a[i - 1]) != 7) {
+                works = false;
+            }
+        }
+        if (works) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
     }
 
     return 0;

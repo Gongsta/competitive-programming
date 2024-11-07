@@ -33,6 +33,18 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int a[2 * n];
+        int total_on = 0;
+        for (int i = 0; i < 2 * n; i++) {
+            cin >> a[i];
+            if (a[i] == 1) {
+                total_on++;
+            }
+        }
+        int total_off = 2 * n - total_on;
+        cout << total_on % 2ll << " " << min(total_off, total_on) << endl;
     }
 
     return 0;

@@ -33,6 +33,12 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, m, r, c;
+        cin >> n >> m >> r >> c;
+        int dist = n * m - ((r - 1) * m + c);
+        // Account for all the people who moved more than one step
+        dist += (n - r) * (m - 1);
+        cout << dist << endl;
     }
 
     return 0;

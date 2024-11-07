@@ -22,17 +22,33 @@
 #include <unordered_set>
 #include <vector>
 
-#define int long long  // Because i'm so done with integer overflow mistakes
+typedef long long ll;
 
 using namespace std;
 
-signed main() {
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     int t;
     cin >> t;
     while (t--) {
+        int n,k;
+        cin >> n >> k;
+        int a[n];
+        int curr_gold = 0;
+        int ans = 0;
+        for (int i=0;i<n;i++) {
+            cin >> a[i];
+            if (a[i] >= k) {
+                curr_gold += a[i];
+            }
+            if (a[i] == 0 && curr_gold > 0) {
+                curr_gold--;
+                ans++;
+            }
+        }
+        cout << ans << endl;
     }
 
     return 0;

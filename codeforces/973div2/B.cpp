@@ -33,6 +33,17 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        int val = a[n - 2];
+        for (int i = n - 3; i >= 0; i--) {
+            val -= a[i];
+        }
+        cout << a[n - 1] - val << endl;
     }
 
     return 0;

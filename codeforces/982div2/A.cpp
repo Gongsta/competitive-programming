@@ -33,6 +33,18 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int w[n];
+        int h[n];
+        int max_w = 0;
+        int max_h = 0;
+        for (int i = 0; i < n; i++) {
+            cin >> w[i] >> h[i];
+            max_w = max(w[i], max_w);
+            max_h = max(h[i], max_h);
+        }
+        cout << 2 * max_w + 2 * max_h << endl;
     }
 
     return 0;

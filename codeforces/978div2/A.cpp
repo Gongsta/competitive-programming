@@ -22,17 +22,37 @@
 #include <unordered_set>
 #include <vector>
 
-#define int long long  // Because i'm so done with integer overflow mistakes
+typedef long long ll;
 
 using namespace std;
 
-signed main() {
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     int t;
     cin >> t;
     while (t--) {
+        int n, r;
+        cin >> n >> r;
+        int a[n];
+        int ans = 0;
+        int solos = 0;
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+            r -= a[i] / 2;
+            if (a[i] % 2 == 0) {
+                ans += a[i];
+            } else {
+                ans += a[i] - 1;
+                solos++;
+            }
+        }
+        while (solos > r) {
+            r--;
+            solos -= 2;
+        }
+        cout << ans + solos << endl;
     }
 
     return 0;

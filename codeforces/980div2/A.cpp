@@ -33,6 +33,15 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int a, b;
+        cin >> a >> b;
+        if (a >= b) {
+            cout << a << endl;
+        } else if ((b - a) >= a) {
+            cout << 0 << endl;
+        } else {
+            cout << a - (b - a) << endl;
+        }
     }
 
     return 0;

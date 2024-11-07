@@ -22,18 +22,18 @@
 #include <unordered_set>
 #include <vector>
 
-#define int long long  // Because i'm so done with integer overflow mistakes
+typedef long long ll;
 
 using namespace std;
 
-signed main() {
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int t;
-    cin >> t;
-    while (t--) {
-    }
+    ll k, n, w;
+    cin >> k >> n >> w;
+    ll total_cost = (w * (w + 1) / 2ll) * k;
+    cout << max(0ll, total_cost - n) << endl;
 
     return 0;
 }

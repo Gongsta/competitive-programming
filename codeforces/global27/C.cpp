@@ -33,6 +33,21 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int ans = 1;
+        for (int i = 1; i <= n; i++) {
+            if (i % 2 == 1) {
+                ans = ans & i;
+            } else {
+                ans = ans | i;
+            }
+        }
+        cout << ans << endl;
+        for (int i = 1; i <= n; i++) {
+            cout << i << " ";
+        }
+        cout << endl;
     }
 
     return 0;

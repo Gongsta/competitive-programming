@@ -26,6 +26,11 @@
 
 using namespace std;
 
+/*
+Worst case is n -1, every number gets assigned to the same number
+
+*/
+
 signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
@@ -33,6 +38,25 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        sort(a, a + n);
+        int ans = n - 1;
+        for (int i = 1; i < n; i++) {
+            auto it = lower_bound(a + i, a + n, a[i] + a[i - 1]);
+            if (it == a + i) {
+                continue;
+            }
+            int left = i - 1;
+            int right = a + n - it;
+            ans = min(ans, left + right);
+        }
+
+        cout << ans << endl;
     }
 
     return 0;

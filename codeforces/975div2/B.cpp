@@ -23,16 +23,37 @@
 #include <vector>
 
 #define int long long  // Because i'm so done with integer overflow mistakes
+typedef long long ll;
 
 using namespace std;
 
-signed main() {
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     int t;
     cin >> t;
     while (t--) {
+        ll n, q;
+        cin >> n >> q;
+        ll x[n];
+        for (int i = 0; i < n; i++) {
+            cin >> x[i];
+        }
+        unordered_map<ll, ll> m;
+        ll cum_sum = 0;
+        for (ll i = 1; i < n; i++) {
+            m[i * (n - i)] += x[i] - x[i - 1] - 1;
+            m[i * (n - i) + (i - 1)] += 1;
+        }
+        m[n - 1] += 1;  // for last number
+
+        while (q--) {
+            ll k;
+            cin >> k;
+            cout << m[k] << " ";
+        }
+        cout << endl;
     }
 
     return 0;

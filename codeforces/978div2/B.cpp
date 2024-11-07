@@ -22,17 +22,27 @@
 #include <unordered_set>
 #include <vector>
 
-#define int long long  // Because i'm so done with integer overflow mistakes
+typedef long long ll;
 
 using namespace std;
 
-signed main() {
+int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     int t;
     cin >> t;
     while (t--) {
+        int n, x;
+        cin >> n >> x;
+        ll a[n];
+        ll cum_sum = 0;
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+            cum_sum += a[i];
+        }
+        sort(a, a + n);
+        cout << max(a[n - 1], (ll)ceil((double)cum_sum / (double)x)) << endl;
     }
 
     return 0;
