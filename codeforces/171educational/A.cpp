@@ -33,6 +33,10 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int X, Y, K;
+        cin >> X >> Y >> K;
+        cout << "0 0 " << min(X, Y) << " " << min(X, Y) << endl;
+        cout << "0 " << min(X, Y) << " " << min(X, Y) << " 0" << endl;
     }
 
     return 0;

@@ -33,6 +33,13 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int k, x, a;
+        cin >> k >> x >> a;
+        if (k - x - 1ll >= 0ll && (k - 1ll) * (a - x) - x >= 0 && a - x > 0) {
+            cout << "YES" << endl;
+        } else {
+            cout << "NO" << endl;
+        }
     }
 
     return 0;

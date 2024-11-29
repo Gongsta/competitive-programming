@@ -18,9 +18,9 @@
 #include <set>
 #include <stack>
 #include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
-// #include <unordered_map> // NEVER USE THOSE IN CP
-// #include <unordered_set> // NEVER USE THOSE IN CP
 
 #define int long long  // Because i'm so done with integer overflow mistakes
 
@@ -33,6 +33,22 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int p[n + 1];
+        for (int i = 1; i <= n; i++) {
+            cin >> p[i];
+        }
+        map<int, int> m;
+        int ans = 3;
+        for (int i = 1; i <= n; i++) {
+            if (m[p[i]] == i) {
+                ans = 2;
+                break;
+            }
+            m[i] = p[i];
+        }
+        cout << ans << endl;
     }
 
     return 0;

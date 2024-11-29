@@ -33,6 +33,19 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n;
+        cin >> n;
+        int h[n];
+        int ans = n;
+        map<int, int> cnt;
+        for (int i = 0; i < n; i++) {
+            cin >> h[i];
+            cnt[h[i]]++;
+        }
+        for (auto &x : cnt) {
+            ans = min(ans, n - x.second);
+        }
+        cout << ans << endl;
     }
 
     return 0;

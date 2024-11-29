@@ -33,6 +33,13 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, k;
+        cin >> n >> k;
+        if (k <= 4 * n - 4) {
+            cout << (k + 1) / 2 << endl;
+        } else {
+            cout << (2 * n - 2) + k - (4 * n - 4) << endl;
+        }
     }
 
     return 0;

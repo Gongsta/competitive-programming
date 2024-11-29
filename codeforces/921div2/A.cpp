@@ -33,6 +33,15 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        int n, k;
+        cin >> n >> k;
+        string s;
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < k; i++) {
+                s += 'a' + i;
+            }
+        }
+        cout << s << endl;
     }
 
     return 0;
