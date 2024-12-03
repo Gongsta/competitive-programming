@@ -18,9 +18,9 @@
 #include <set>
 #include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+// #include <unordered_map> // NEVER USE THOSE IN CP
+// #include <unordered_set> // NEVER USE THOSE IN CP
 
 #define int long long  // Because i'm so done with integer overflow mistakes
 
@@ -35,19 +35,28 @@ signed main() {
     while (t--) {
         int n;
         cin >> n;
+        int p[n + 1];
+        for (int i = 1; i <= n; i++) {
+            cin >> p[i];
+        }
+        bool visited[n + 1];
+        memset(visited, 0, sizeof(visited));
         int ans = 0;
         for (int i = 1; i <= n; i++) {
-            if (i % 2 == 1) {
-                ans = ans & i;
-            } else {
-                ans = ans | i;
+            if (visited[i]) {
+                continue;
             }
+            int cycle_length = 1;
+            visited[i] = true;
+            int curr = p[i];
+            while (curr != i) {
+                cycle_length++;
+                visited[curr] = true;
+                curr = p[curr];
+            }
+            ans += (cycle_length - 1) / 2;
         }
         cout << ans << endl;
-        for (int i = 1; i <= n; i++) {
-            cout << i << " ";
-        }
-        cout << endl;
     }
 
     return 0;

@@ -18,13 +18,22 @@
 #include <set>
 #include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+// #include <unordered_map> // NEVER USE THOSE IN CP
+// #include <unordered_set> // NEVER USE THOSE IN CP
 
 #define int long long  // Because i'm so done with integer overflow mistakes
 
 using namespace std;
+
+int xors[(int)2e5];
+
+int get_xor(int l, int r, int n) {
+    if (l == 0) {
+        return xors[r];
+    }
+    return xors[r] ^ xors[l - 1];
+}
 
 signed main() {
     ios::sync_with_stdio(0);
@@ -33,21 +42,20 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
-        int n;
-        cin >> n;
-        int ans = 0;
-        for (int i = 1; i <= n; i++) {
-            if (i % 2 == 1) {
-                ans = ans & i;
-            } else {
-                ans = ans | i;
+        int n, q;
+        cin >> n >> q;
+        for (int i = 0; i < n; i++) {
+            cin >> xors[i];
+            if (i != 0) {
+                xors[i] ^= xors[i - 1];
             }
         }
-        cout << ans << endl;
-        for (int i = 1; i <= n; i++) {
-            cout << i << " ";
+        while (q--) {
+            int l, r;
+            cin >> l >> r;
+            l--;
+            r--;
         }
-        cout << endl;
     }
 
     return 0;

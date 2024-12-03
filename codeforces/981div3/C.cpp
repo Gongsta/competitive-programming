@@ -18,9 +18,10 @@
 #include <set>
 #include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+
+// #include <unordered_map> // NEVER USE THOSE IN CP
+// #include <unordered_set> // NEVER USE THOSE IN CP
 
 #define int long long  // Because i'm so done with integer overflow mistakes
 
@@ -35,19 +36,24 @@ signed main() {
     while (t--) {
         int n;
         cin >> n;
+        int a[n];
+        for (int i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        int l = 0;
+        for (int l = n / 2 - 1; l >= 0; l--) {
+            int r = n - 1 - l;
+            if ((a[l] == a[l + 1] || a[r] == a[r - 1])) {
+                swap(a[l], a[r]);
+            }
+        }
         int ans = 0;
-        for (int i = 1; i <= n; i++) {
-            if (i % 2 == 1) {
-                ans = ans & i;
-            } else {
-                ans = ans | i;
+        for (int i = 0; i < n - 1; i++) {
+            if (a[i] == a[i + 1]) {
+                ans++;
             }
         }
         cout << ans << endl;
-        for (int i = 1; i <= n; i++) {
-            cout << i << " ";
-        }
-        cout << endl;
     }
 
     return 0;

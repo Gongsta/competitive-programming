@@ -18,9 +18,9 @@
 #include <set>
 #include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
+// #include <unordered_map> // NEVER USE THOSE IN CP
+// #include <unordered_set> // NEVER USE THOSE IN CP
 
 #define int long long  // Because i'm so done with integer overflow mistakes
 
@@ -33,21 +33,14 @@ signed main() {
     int t;
     cin >> t;
     while (t--) {
+        // Break it down into even and odd problems
         int n;
         cin >> n;
-        int ans = 0;
-        for (int i = 1; i <= n; i++) {
-            if (i % 2 == 1) {
-                ans = ans & i;
-            } else {
-                ans = ans | i;
-            }
+        cout << "1 1" << endl;
+        cout << "1 2" << endl;
+        for (int i = 3; i <= n; i++) {
+            cout << i << " " << i << endl;
         }
-        cout << ans << endl;
-        for (int i = 1; i <= n; i++) {
-            cout << i << " ";
-        }
-        cout << endl;
     }
 
     return 0;
