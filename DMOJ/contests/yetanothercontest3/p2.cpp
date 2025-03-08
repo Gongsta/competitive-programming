@@ -1,91 +1,127 @@
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <string.h>
+
+#include <algorithm>
+#include <bitset>
+#include <cassert>
+#include <climits>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string>
+#include <vector>
+
+// #include <unordered_map> // NEVER USE THOSE IN CP
+// #include <unordered_set> // NEVER USE THOSE IN CP
+
+#define int long long  // Because i'm so done with integer overflow mistakes
 
 using namespace std;
 
-int dist[500][500];
-int adj[500][500];
+const int MAX = 2e5 + 1;
+int cnt[MAX];
+bool visited[MAX];
+int ans[MAX];
 
-int INF = 20002;
-int main() {
+vector<int> unrooted_adj[MAX];
+vector<int> adj[MAX];
+
+void build_rooted(int i) {
+    for (int x : unrooted_adj[i]) {
+        if (visited[x]) {
+            continue;
+        }
+        adj[i].push_back(x);
+        visited[x] = true;
+        build_rooted(x);
+    }
+}
+
+int build_cnt(int i) {
+    for (int x : adj[i]) {
+        cnt[i] += build_cnt(x);
+    }
+    return 1 + cnt[i];
+}
+
+/*
+3 options
+3 2 4
+3 2 1
+3 2 5
+
+3 2 1
+3 2 5
+4 2 1
+4 2 5
+
+*/
+void solve(int i, int carry) {
+    // you start at the root
+    cout << i << " " << cnt[i] << " " << carry << endl;
+    int same_3 = 1ll;
+    int same_2 = (cnt[i] + carry) * 3ll;
+    int same_1 = cnt[i] * carry * 6ll;
+    int total_except_i = cnt[i] + carry;  // includes parents
+
+    for (int x : adj[i]) {
+        // count number passing through i
+        same_1 += (1 + cnt[x]) * (total_except_i - cnt[x] - 1) * 3ll;
+    }
+    // cout << same_1 << endl;
+    // // add for not passing through i
+    // for (int j = 0; j < adj[i].size(); j++) {
+    //     for (int k = j + 1; k < adj[i].size(); k++) {
+    //         for (int l = k + 1; l < adj[i].size(); l++) {
+    //             same_1 += (1 + cnt[adj[i][j]]) * (1 + cnt[adj[i][k]]) * (1 + cnt[adj[i][l]]) * 6ll;
+    //         }
+    //         same_1 += (1 + cnt[adj[i][j]]) * (1 + cnt[adj[i][k]]) * (carry) * 6ll;
+    //     }
+    // }
+    // cout << i << " " << left_cnt[i] << " " << right_cnt[i] << " " << carry << endl;
+    // cout << same_1 << endl;
+
+    ans[i] = same_3 + same_2 + same_1;
+
+    for (int x : adj[i]) {
+        solve(x, cnt[i] + carry - cnt[x]);
+    }
+}
+
+signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
     int N;
     cin >> N;
-    int temp = N;
-    temp--;
-    int u, v; 
-    
-    
-    // Definitely need DP for this problem 
-    if (N > 500){
-        vector<int> vec[200001];
-        while (temp--) {
-            cin >> u >> v;
-            vec[u].push_back(v);
-            vec[v].push_back(u);
-            
-        }
-
-    } else {
-        while (temp--) {
-            cin >> u >> v;
-            adj[u][v] = 1;
-            adj[v][u] = 1;
-        }
-
-        for (int i=1; i<=N; i++) {
-            for (int j=1; j<=N; j++) {
-                if (i == j) dist[i][j] = 0;
-                else if (adj[i][j]) dist[i][j] = 1;
-                else dist[i][j] = INF;
-            }
-        }
-        for (int k = 1; k <=N; k++) {
-            for (int i = 1; i <=N; i++) {
-                for (int j = 1; j <=N; j++) {
-                    dist[i][j] = min(dist[i][j], dist[i][k]+dist[k][j]);
-                }
-            }
-        }
-        
-        // i, j, k are the starting positions
-        map<int, int> m;
-        for (int k = 1; k<=N; k++) {
-            for (int i = 1; i <=N; i++) {
-                for (int j = 1; j <=N; j++) {
-                    int best = INF;
-                    int best_node = 1;
-                    for (int x=1; x<=N; x++) {
-                        if (dist[x][i] + dist[x][j] + dist[x][k] < best) {
-                            best = dist[x][i] + dist[x][j] + dist[x][k];
-                            best_node = x;
-                        }
-                    }
-                    if (!m.count(best_node)) {
-                        m[best_node] = 1;
-                    } else {
-                        m[best_node] += 1;
-                    }
-                }
-            }
-        }
-        
-        for (int i=1; i<=N; i++) {
-            if (!m.count(i)) {
-                cout << 0;
-            } else {
-                cout << m[i];
-            }
-            if (i!=N) {
-                cout << " ";
-            } else {
-                cout << endl;
-            }
-        }
-
+    for (int i = 0; i < N - 1; i++) {
+        int u, v;
+        cin >> u >> v;
+        unrooted_adj[u].push_back(v);
+        unrooted_adj[v].push_back(u);
     }
+    visited[1] = true;
+    int root = 1;
+    build_rooted(root);
+    build_cnt(root);
+    solve(root, 0);
+    // build a tree and count the number of leafs on left and right
 
-    
+    for (int i = 1; i <= N; i++) {
+        cout << ans[i] << " ";
+    }
+    cout << endl;
+
     return 0;
 }

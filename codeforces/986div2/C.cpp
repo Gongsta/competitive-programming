@@ -83,9 +83,9 @@ signed main() {
                     prev = pointers.top();
                 }
                 while (p < right && prefix(p + 1, right) >= v) {
-                    cout << prev << " " << p << endl;
+                    // cout << prev << " " << p << endl;
                     ans = max(ans, prefix(prev + 1, p));
-                    cout << ans << endl;
+                    // cout << ans << endl;
                     right = p;
                     p++;
                 }

@@ -57,7 +57,8 @@
     "tuple": "cpp",
     "typeinfo": "cpp",
     "variant": "cpp",
-    "algorithm": "cpp"
+    "algorithm": "cpp",
+    "numeric": "cpp"
   },
   "stm32-for-vscode.openOCDPath": false,
   "stm32-for-vscode.armToolchainPath": false

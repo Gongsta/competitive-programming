@@ -1,107 +1,105 @@
-#include <bits/stdc++.h>
+#include <stdio.h>
+#include <string.h>
+
+#include <algorithm>
+#include <bitset>
+#include <cassert>
+#include <climits>
+#include <cmath>
+#include <iomanip>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <map>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <numeric>
+#include <ostream>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string>
+#include <vector>
+
+// #include <unordered_map> // NEVER USE THOSE IN CP
+// #include <unordered_set> // NEVER USE THOSE IN CP
+
+#define int long long  // Because i'm so done with integer overflow mistakes
 
 using namespace std;
 
-// bitset<1000000001> bs;
-vector<pair<int, int> > v;
-deque<pair<int, int> > final_path;
+/*
+Left tries to move until the very end. Right tries to move until the very left until you run into a -1.
 
-int move_rock(int rock_pos, pair<int, int> swap_pair) {
-    if (rock_pos == swap_pair.first) {
-        rock_pos = swap_pair.second;
-    } else if (rock_pos == swap_pair.second) {
-        rock_pos = swap_pair.first;
-    }
-    return rock_pos;
-}
+If both -1 are pointing to the same, then you, simply need to swap start and end.
+If start and end are same, use another one
 
-// int M and int B (final position) are CONSTANTS
-bool dfs(int swap_i, int rock_pos, int M, int B,vector< pair<int, int> > swap_permutations) {
-    if (swap_i == M) { // Becuse last swap might also be -1, so we check the state of the one after that
-        if (rock_pos == B) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    // If we don't know the swap,
-    if (v[swap_i].first == -1) {
-        int temp_rock_pos;
-        for (auto swap_pair: swap_permutations) {
-            temp_rock_pos = move_rock(rock_pos, swap_pair);
-            final_path.push_back(swap_pair);
-            // cout << "Pushing to final path:" << swap_pair.first << ":" << swap_pair.second << endl;
-            if (!dfs(swap_i+1, temp_rock_pos, M, B,swap_permutations)) {
-                final_path.pop_back();
-                // cout << "Popping to final path:" << swap_pair.first << ":" << swap_pair.second << endl;
-            } else {
-                return true;
-            }
-
-        }
-
-    } else { // We know the swap, so we can keep track of the position of the rock
-        rock_pos = move_rock(rock_pos, v[swap_i]);  // Move the rock
-        final_path.push_back(v[swap_i]);
-        // cout << "Pushing to final path:" << "swap_i" << swap_i << v[swap_i].first << ":" << v[swap_i].second << endl;
-        bool f = dfs(swap_i+1, rock_pos, M, B,swap_permutations);
-        if(!f) {
-            final_path.pop_back();
-            // cout << "Popping to final path:" << "swap_i" << swap_i << v[swap_i].first << ":" << v[swap_i].second << endl;
-        }
-        return f;
-    }
-    // return false;
-}
-
-int main() {
+If both -1 are pointing to different, then it can be start and end anywhere. You can decide the swap arbitrarily.
+*/
+signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
-    int N, M, A, B;
-    pair<int, int> p;
-    cin >> N >> M >> A >> B;
-    int mm = M;
-    while (mm--) {
-        cin >> p.first;
-        if (p.first == -1) {
-            v.push_back(p);
+    int n, m, a, b;
+    cin >> n >> m >> a >> b;
+    vector<pair<int, int>> swaps;
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u;
+        if (u == -1) {
+            swaps.push_back({-1, -1});
         } else {
-            cin >> p.second;
-            if (p.second < p.first) {
-                swap(p.first, p.second);
-            }
-            v.push_back(p);
+            cin >> v;
+            swaps.push_back({u, v});
         }
     }
-    
-    // Generate all the possible swap permutations
-    vector< pair<int, int> > swap_permutations;
-    pair<int, int> temp;
-    for (int i=1; i<=N; i++) {
-            temp.first = i;
-            temp.second = B;
-            if (temp.first > temp.second) {
-                swap(temp.first, temp.second);
+    int l = 0;
+    int r = m - 1;
+    int start = a;
+    int end = b;
+    while (l <= r) {
+        if (swaps[l].first != -1) {
+            if (swaps[l].first == start) {
+                start = swaps[l].second;
+            } else if (swaps[l].second == start) {
+                start = swaps[l].first;
             }
-            if (i != B) {
-                swap_permutations.push_back(temp);
+            l++;
+        } else if (swaps[r].first != -1) {
+            if (swaps[r].first == end) {
+                end = swaps[r].second;
+            } else if (swaps[r].second == end) {
+                end = swaps[r].first;
             }
+            r--;
+        } else if (l == r) {  // both are -1 and point to the same
+            if (start == end) {
+                for (int i = 1; i <= n; i++) {
+                    if (i != start) {
+                        swaps[l].first = i;
+                        break;
+                    }
+                }
+                for (int i = 1; i <= n; i++) {
+                    if (i != start && i != swaps[l].first) {
+                        swaps[l].second = i;
+                        break;
+                    }
+                }
+            } else {
+                swaps[l].first = start;
+                swaps[l].second = end;
+            }
+            l++;
+        } else {  // make it arbitrary, you can do anything
+            swaps[l].first = 1;
+            swaps[l].second = 2;
+        }
+    }
+    for (int i = 0; i < swaps.size(); i++) {
+        cout << swaps[i].first << " " << swaps[i].second << endl;
     }
 
-    for (int i=2; i<=N; i++) {
-            temp.first = 1;
-            temp.second = i;
-            if (i != B) {
-                swap_permutations.push_back(temp);
-            }
-    }
-    dfs(0, A, M, B, swap_permutations);
-
-    while (!final_path.empty()) {
-        temp = final_path.front();
-        final_path.pop_front();
-        cout << temp.first << " " << temp.second << "\n";
-    }
     return 0;
 }

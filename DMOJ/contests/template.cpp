@@ -3,6 +3,8 @@
 
 #include <algorithm>
 #include <bitset>
+#include <cassert>
+#include <climits>
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -18,15 +20,17 @@
 #include <set>
 #include <stack>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
 
-typedef long long ll;
+
+// #include <unordered_map> // NEVER USE THOSE IN CP
+// #include <unordered_set> // NEVER USE THOSE IN CP
+
+#define int long long  // Because i'm so done with integer overflow mistakes
 
 using namespace std;
 
-int main() {
+signed main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
 
